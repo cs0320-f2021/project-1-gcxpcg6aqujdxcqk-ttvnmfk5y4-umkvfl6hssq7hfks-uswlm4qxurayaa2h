@@ -1,0 +1,9 @@
+ARGS
+
+INPUT
+subtract 5.0 0.0
+add 5.0 0.0
+OUTPUT
+5.0
+5.0
+END
