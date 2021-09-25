@@ -65,8 +65,6 @@ public final class Main {
 
     try (BufferedReader br = new BufferedReader(new InputStreamReader(System.in))) {
       String input;
-      CSVReader reader = null;
-      MathBot mathbot = new MathBot();
 
       HashMap<String, ArgumentHandler> argHashMap = new HashMap<>();
       argHashMap.put("add", new AddHandler());
@@ -75,26 +73,20 @@ public final class Main {
       argHashMap.put("naive_neighbors", new NaiveNeighborsHandler());
 
       while ((input = br.readLine()) != null) {
-        try {
-          input = input.trim();
-          String[] arguments = input.split(" ");
-          ArgumentHandler handler = argHashMap.get(arguments[0]);
+        input = input.trim();
+        String[] arguments = input.split(" ");
+        ArgumentHandler handler = argHashMap.get(arguments[0]);
 
-          //TODO Ben's code before checked: if the reader hasn't already been created and the command isn't stars, throw an error
-          if (handler == null) {
-            System.out.println("ERROR: command not recognized.");
-          } else {
-            handler.handleArg(arguments);
-          }
-
-        } catch (Exception e) {
-          // e.printStackTrace();
-          System.out.println("ERROR: We couldn't process your input");
+        //TODO before, Ben's code checked: `if the reader hasn't already been created and the command isn't stars, throw an error`
+        if (handler == null) {
+          StarsErrorHandler.wrongArgError();
+        } else {
+          handler.handleArg(arguments);
         }
+
       }
     } catch (Exception e) {
-      e.printStackTrace();
-      System.out.println("ERROR: Invalid input for REPL");
+      StarsErrorHandler.brokenReplError(); //e.printStackTrace();
     }
   }
 
