@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.io.StringWriter;
+import java.util.HashMap;
 import java.util.Map;
 
 import com.google.common.collect.ImmutableMap;
@@ -44,6 +45,8 @@ public final class Main {
     this.args = args;
   }
 
+
+
   private void run() {
     // set up parsing of command line flags
     OptionParser parser = new OptionParser();
@@ -62,63 +65,28 @@ public final class Main {
 
     try (BufferedReader br = new BufferedReader(new InputStreamReader(System.in))) {
       String input;
-      CSVReader reader = null;
+
+      HashMap<String, ArgumentHandler> argHashMap = new HashMap<>();
+      argHashMap.put("add", new AddHandler());
+      argHashMap.put("subtract", new SubtractHandler());
+      argHashMap.put("stars", new StarsHandler());
+      argHashMap.put("naive_neighbors", new NaiveNeighborsHandler());
+
       while ((input = br.readLine()) != null) {
-        try {
-          input = input.trim();
-          String[] arguments = input.split(" ");
-          if (arguments[0].equals("stars")) {
-            reader = new CSVReader();
-            reader.readFile(arguments[1]);
-          }
-          if (arguments[0].equals("naive_neighbors")) {
-            if (reader == null) {
-              continue; //ensures that naive_neighbors command can't be run without data
-            }
-            if (arguments[2].startsWith("\"")) {
-              //These lines ensure that the full name is passed to nameSort
-              StringBuilder properName = new StringBuilder(arguments[2]);
-              if (!properName.toString().endsWith("\"")) {
-                for (int i = 3; i < arguments.length; i++) {
-                  properName.append(arguments[i]);
-                  if (arguments[i].contains("\"")) {
-                    break;
-                  }
-                }
-              }
-              if (arguments[1].equals("1")) {
-                continue;
-              }
-              reader.nameSort(Integer.parseInt(arguments[1]), properName.toString());
-            } else {
-              reader.coordinateSort(Integer.parseInt(arguments[1]),
-                  Double.parseDouble(arguments[2]),
-                  Double.parseDouble(arguments[3]), Double.parseDouble(arguments[4]));
-            }
-          } else if (reader != null && !arguments[0].equals("stars")) {
-            System.out.println("ERROR:");
-          }
+        input = input.trim();
+        String[] arguments = input.split(" ");
+        ArgumentHandler handler = argHashMap.get(arguments[0]);
 
-          MathBot mathbot = new MathBot();
-          if (arguments[0].equals("add")) {
-            double sum = mathbot.add(Double.parseDouble(arguments[1]),
-                Double.parseDouble(arguments[2]));
-            System.out.println(sum);
-          }
-          if (arguments[0].equals("subtract")) {
-            double difference = mathbot.subtract(Double.parseDouble(arguments[1]),
-                Double.parseDouble(arguments[2]));
-            System.out.println(difference);
-          }
-
-        } catch (Exception e) {
-          // e.printStackTrace();
-          System.out.println("ERROR: We couldn't process your input");
+        //TODO before, Ben's code checked: `if the reader hasn't already been created and the command isn't stars, throw an error`
+        if (handler == null) {
+          StarsErrorHandler.wrongArgError();
+        } else {
+          handler.handleArg(arguments);
         }
+
       }
     } catch (Exception e) {
-      e.printStackTrace();
-      System.out.println("ERROR: Invalid input for REPL");
+      StarsErrorHandler.brokenReplError(); //e.printStackTrace();
     }
   }
 
