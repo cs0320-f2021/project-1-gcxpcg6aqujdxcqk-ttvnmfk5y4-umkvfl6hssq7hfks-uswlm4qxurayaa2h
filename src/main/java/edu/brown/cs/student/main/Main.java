@@ -45,8 +45,6 @@ public final class Main {
     this.args = args;
   }
 
-
-
   private void run() {
     // set up parsing of command line flags
     OptionParser parser = new OptionParser();
