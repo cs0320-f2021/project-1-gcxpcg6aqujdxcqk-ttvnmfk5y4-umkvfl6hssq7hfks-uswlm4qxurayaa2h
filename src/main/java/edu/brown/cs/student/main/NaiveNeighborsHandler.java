@@ -25,9 +25,18 @@ public class NaiveNeighborsHandler implements ArgumentHandler {
             Double.parseDouble(arguments[3]), Double.parseDouble(arguments[4]));
       }
     } catch (NullPointerException e) {
-      StarsErrorHandler.noStarsError();
+      ProjectErrorHandler.noStarsError();
     }
 
+  }
+
+  public boolean checkNumArgs(String[] arguments) {
+    return (arguments.length == 3) | (arguments.length == 5);
+  }
+
+  public String getUsageString() {
+    return "usage: naive_neighbors <k> <star_id>\n" +
+        "       naive_neighbors <k> <x> <y> <z>";
   }
 }
 

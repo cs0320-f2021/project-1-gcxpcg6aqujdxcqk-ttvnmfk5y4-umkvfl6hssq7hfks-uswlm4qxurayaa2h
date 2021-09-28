@@ -7,9 +7,16 @@ public class StarsHandler implements ArgumentHandler {
     CSVReader reader = new CSVReader();
     try {
       reader.readFile(arguments[1]);
+    } catch (FileNotFoundException e) {
+      ProjectErrorHandler.fileNotFoundError();
     }
-    catch (FileNotFoundException e) {
-      StarsErrorHandler.fileNotFoundError();
-    }
+  }
+
+  public boolean checkNumArgs(String[] arguments) {
+    return (arguments.length == 2);
+  }
+
+  public String getUsageString() {
+    return "usage: stars <filename>";
   }
 }

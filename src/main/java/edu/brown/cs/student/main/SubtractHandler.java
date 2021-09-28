@@ -7,4 +7,12 @@ public class SubtractHandler implements ArgumentHandler {
     System.out.println(difference);
   }
 
+  public boolean checkNumArgs(String[] arguments) {
+    return (arguments.length == 3);
+  }
+
+  public String getUsageString() {
+    return "usage: subtract <int1> <int2>";
+  }
+
 }
