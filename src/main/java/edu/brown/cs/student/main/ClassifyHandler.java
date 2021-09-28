@@ -4,11 +4,12 @@ public class ClassifyHandler implements ArgumentHandler {
   public void handleArg(String[] arguments) {
     try {
       Integer k = Integer.parseInt(arguments[1]);
+      ProjectDataStructure kdTree = ProjectDataContainer.getDataStructure();
 
       if (arguments.length == 3) {
-        System.out.println("Todo id");
+        kdTree.classifyId(69);
       } else if (arguments.length == 5) {
-        System.out.println("Todo coordinates");
+        kdTree.classifyCoords(4, 20, 69);
       } else {
         ProjectErrorHandler.invalidInputError("classify");
       }

@@ -77,6 +77,8 @@ public final class Main {
       argHashMap.put("similar", new SimilarHandler());
       argHashMap.put("classify", new ClassifyHandler());
 
+      ProjectDataContainer.setDataStructure(new KdTree(3));
+
       while ((input = br.readLine()) != null) {
         input = input.trim();
         String[] arguments = input.split(" ");

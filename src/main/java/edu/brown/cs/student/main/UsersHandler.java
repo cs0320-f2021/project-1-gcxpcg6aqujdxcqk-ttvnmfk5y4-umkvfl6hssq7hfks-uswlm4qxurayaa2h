@@ -9,12 +9,10 @@ public class UsersHandler implements ArgumentHandler {
     }
   }
 
-  @Override
   public boolean checkNumArgs(String[] arguments) {
     return (arguments.length == 2);
   }
 
-  @Override
   public String getUsageString() {
     return "usage: users path/to/jsonfile.json ... for API pursuers \n " +
         "       users online ...";
