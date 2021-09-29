@@ -22,6 +22,9 @@ public final class ProjectErrorHandler {
     System.out.println("ERROR: file not found");
   }
 
+  public static void notImplementedError() {
+    System.out.println("ERROR: feature not yet implemented");
+  }
 
 
 }
