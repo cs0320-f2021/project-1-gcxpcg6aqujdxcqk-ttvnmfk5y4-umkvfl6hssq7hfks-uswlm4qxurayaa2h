@@ -4,19 +4,12 @@ import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 
 import java.io.*;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.List;
-//import org.json.simple.JSONArray;
+
+import org.json.JSONArray;
 import org.json.JSONObject;
 
-import java.lang.Math;
 import java.io.FileReader;
-
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
-
 
 /**
  * Class handles opening JSON files and using fromJSON to create new objects to
@@ -24,62 +17,41 @@ import com.google.gson.JsonParser;
  */
 public class JsonHandler {
 
-    public static void main(String filepath) {
 
-        Gson gson = new Gson();
-        String linefromfile;
+    public static void main(String[] args, String filepath) {
+        JSONArray array = readJSONfile(filepath);
+        convertJSONList(array);
+    }
 
-        //Jsonparser doesn't work (throws an error)
+    private static void convertJSONList(JSONArray array) {
+        final ArrayList<?> JSRead = new Gson().fromJson(array.toString(),
+                ArrayList.class);
+        System.out.println("\nArrayList:" + JSRead);
+    }
+
+    private static JSONArray readJSONfile(String filepath) {
+        JSONArray newArray = new JSONArray();
+        String lineFromFile;
+
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader(filepath))) {
-            while ((linefromfile = bufferedReader.readLine()) != null) {
-                if (!linefromfile.isEmpty()) {
+            while ((lineFromFile = bufferedReader.readLine()) != null) {
+                if (!lineFromFile.isEmpty()) {
+                    JSONObject jsnObj = new JSONObject();
+                    System.out.println("Line: ==>" + lineFromFile);
 
-                    // Convert JSON File to Java Object
-                    JsonStore jsonStore = gson.fromJson(bufferedReader, JsonStore.class);
-
-                    // print java object
-                    System.out.println(jsonStore);
-
-
+                    String[] split = lineFromFile.split(" ");
+                    jsnObj.put(lineFromFile, split[0]);
                 }
+
             }
+
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        return newArray;
     }
 }
-
-//    public static void main (String[] args){
-//        JSONList array = readJSONfile();
-//        convertJSONList(array);
-//    }
-//
-//    private static void convertJSONList(JsonArray array) {
-//    final ArrayList<?> JSRead = new Gson().fromJson(array.toString(), ArrayList.class);
-//    log("\nArrayList:" + JSRead);
-//    }
-//
-//    private static JsonArray readJSONfile() {
-//        JSONArray newArray = new JSONArray();
-//        String lineFromFile;
-//
-//        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(lineFromFile))) {
-//            while ((lineFromFile = bufferedReader.readLine()) != null) {
-//                if (!lineFromFile.isEmpty()) {
-//                    JSONObject jsnObj = new JSONObject();
-//                    log("Line: ==>" + lineFromFile);
-//
-//                    String split = lineFromFile.split(" ");
-//
-//                }
-//
-//            }
-//
-//        } catch (FileNotFoundException e) {
-//            e.printStackTrace();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
 
