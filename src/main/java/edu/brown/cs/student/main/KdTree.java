@@ -1,7 +1,7 @@
 package edu.brown.cs.student.main;
 
-import java.util.LinkedList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 public class KdTree implements ProjectDataStructure {
 
@@ -14,7 +14,7 @@ public class KdTree implements ProjectDataStructure {
    */
   public KdTree(int k) {
     k = k;
-    root = new Node(k);
+    root = null;
   }
 
 
@@ -22,9 +22,64 @@ public class KdTree implements ProjectDataStructure {
     //TODO
   }
 
-  private List<Node> nearestNeighbors(Node target) {
-    //TODO
-    return new LinkedList<>();
+  /**
+   * Helper function that returns the entry with the max possible value in the HashMap
+   * @param hm - HashMap to get the max possible entry of
+   * @return Entry<Node, Double> that has the max value
+   */
+  // TODO make this general it's so not general right now :(
+  private Map.Entry<Node, Double> getMaxEntry(HashMap<Node, Double> hm) {
+    Map.Entry<Node, Double> maxEntry = null;
+    for (Map.Entry<Node, Double> entry : hm.entrySet()) {
+      if (maxEntry == null || entry.getValue().compareTo(maxEntry.getValue()) > 0)
+      { maxEntry = entry; }
+    }
+    return maxEntry;
+  }
+
+  /**
+   * Performs kNearestNeighbors search starting from node current.
+   * @param current - node to start searching from
+   * @param targetCoords - coords we are getting nearest neighbors to
+   * @param nn - current HashMap of Nodes that are nearest neighbors -> their distances
+   * @param numNeighbors - the number of neighbors to look for
+   * @param currentLayer - current layer searching from (start at 0)
+   * @return nn, HashMap of Nodes that are nearest neighbors -> their distances
+   */
+  private HashMap<Node, Double> nearestNeighbors(Node current, int[] targetCoords, HashMap<Node, Double> nn, int numNeighbors, int currentLayer) {
+    int currentDim = currentLayer % k;
+    Double d = current.getDistanceFrom(targetCoords);
+
+    if (nn.size() < numNeighbors) {
+      nn.put(current, d);
+      nearestNeighbors(current.getLChild(), targetCoords, nn, numNeighbors, currentLayer+1);
+      nearestNeighbors(current.getRChild(), targetCoords, nn, numNeighbors, currentLayer+1);
+    } else {
+      // get the furthest node from targetCoords in nn right now
+      // if there are multiple with the same value, just returns the first one
+      Map.Entry<Node, Double> furthestEntry = getMaxEntry(nn);
+
+      // if current is closer than the furthest, replace and recalculate furthestEntry again
+      if (furthestEntry.getValue() > d) {
+        nn.remove(furthestEntry.getKey());
+        nn.put(current, d);
+        furthestEntry = getMaxEntry(nn);
+      }
+
+      int axisDistance = targetCoords[currentDim] - current.getCoordinates()[currentDim];
+
+      if (furthestEntry.getKey().getDistanceFrom(targetCoords) > axisDistance) {
+        nearestNeighbors(current.getLChild(), targetCoords, nn, numNeighbors, currentLayer+1);
+        nearestNeighbors(current.getRChild(), targetCoords, nn, numNeighbors, currentLayer+1);
+      } else {
+        if (targetCoords[currentDim] <= current.getCoordinates()[currentDim]) {
+          nearestNeighbors(current.getLChild(), targetCoords, nn, numNeighbors, currentLayer+1);
+        } else {
+          nearestNeighbors(current.getRChild(), targetCoords, nn, numNeighbors, currentLayer+1);
+        }
+      }
+    }
+    return nn;
   }
 
 

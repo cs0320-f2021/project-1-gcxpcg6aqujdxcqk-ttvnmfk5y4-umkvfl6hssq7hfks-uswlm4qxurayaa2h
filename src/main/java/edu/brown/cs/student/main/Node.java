@@ -1,13 +1,20 @@
 package edu.brown.cs.student.main;
 
+import java.util.Arrays;
+import java.util.Comparator;
+
+import static java.util.Objects.hash;
+
 public class Node {
+  private int nodeId;
   private int dimension;
   private int[] coordinates;
   private Node parent;
   private Node lchild;
   private Node rchild;
 
-  public Node(int k) {
+  public Node(int nodeId, int k) {
+    nodeId = nodeId;
     dimension = k;
     coordinates = new int[k];
     parent = null;
@@ -15,18 +22,35 @@ public class Node {
     rchild = null;
   }
 
+  @Override
+  public boolean equals(Object o) {
+    if (o == this)
+      return true;
+    if (!(o instanceof Node))
+      return false;
+    Node other = (Node)o;
+    return this.nodeId == other.nodeId && Arrays.equals(this.coordinates, other.coordinates);
+  }
+
+  @Override
+  public final int hashCode() {
+    return hash(this.nodeId, this.coordinates);
+  }
+
   public int[] getCoordinates() {
     return coordinates;
   }
 
+  public Node getLChild() { return lchild; }
+  public Node getRChild() { return rchild; }
+
   /**
    * Calculates Euclidean distance from another Node
-   * @param otherNode - other node to calculate distance from
+   * @param otherCoords - other point in space to calculate distance from
    * @return - null if error, otherwise the distance as Double
    * @Exception - calls invalidInputError if otherNode is not same dimension
    */
-  public Double getDistanceFrom(Node otherNode) {
-    int[] otherCoords = otherNode.getCoordinates();
+  public Double getDistanceFrom(int[] otherCoords) {
     if (otherCoords.length != dimension) {
       ProjectErrorHandler.invalidInputError("otherNode must be of dimension" + dimension);
     } else {
