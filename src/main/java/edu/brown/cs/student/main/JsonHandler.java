@@ -22,13 +22,14 @@ public class JsonHandler {
         JSONArray array = readJSONfile(filepath);
         convertJSONList(array);
     }
-
+// converts our JSON object to a ArrayList object
     private static void convertJSONList(JSONArray array) {
         final ArrayList<?> JSRead = new Gson().fromJson(array.toString(),
                 ArrayList.class);
         System.out.println("\nArrayList:" + JSRead);
     }
 
+// reads JSON file using buffered reader
     private static JSONArray readJSONfile(String filepath) {
         JSONArray newArray = new JSONArray();
         String lineFromFile;
