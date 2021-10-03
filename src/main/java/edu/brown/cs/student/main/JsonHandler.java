@@ -57,11 +57,10 @@ public class JsonHandler {
                 return convertUsers(filepath);
             default:
                 return null;
-
         }
-
-
+      }
     }
-
 }
-
+    return newArray;
+  }
+}
