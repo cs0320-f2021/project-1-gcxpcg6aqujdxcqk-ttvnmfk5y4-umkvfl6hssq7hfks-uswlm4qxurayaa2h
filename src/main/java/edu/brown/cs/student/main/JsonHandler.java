@@ -1,11 +1,15 @@
 package edu.brown.cs.student.main;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonArray;
 
-import java.io.Reader;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.Map;
+import java.io.*;
+import java.util.ArrayList;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.io.FileReader;
 
 /**
  * Class handles opening JSON files and using fromJSON to create new objects to
@@ -13,28 +17,41 @@ import java.util.Map;
  */
 public class JsonHandler {
 
-  public void JsonHandler(String string) {
-    try {
-      // create Gson instance
-      Gson gson = new Gson();
 
-      // create a reader
-      Reader reader = Files.newBufferedReader(Paths.get(string));
-
-      // convert JSON file to map
-      Map<?, ?> map = gson.fromJson(reader, Map.class);
-
-      // print map entries
-      for (Map.Entry<?, ?> entry : map.entrySet()) {
-        System.out.println(entry.getKey() + "=" + entry.getValue());
-      }
-
-      // close reader
-      reader.close();
-
-    } catch (Exception ex) {
-      ex.printStackTrace();
-    }
+  public static void main(String[] args, String filepath) {
+    JSONArray array = readJSONfile(filepath);
+    convertJSONList(array);
+  }
+  // converts our JSON object to a ArrayList object
+  private static void convertJSONList(JSONArray array) {
+    final ArrayList<?> JSRead = new Gson().fromJson(array.toString(),
+        ArrayList.class);
+    System.out.println("\nArrayList:" + JSRead);
   }
 
+  // reads JSON file using buffered reader
+  private static JSONArray readJSONfile(String filepath) {
+    JSONArray newArray = new JSONArray();
+    String lineFromFile;
+
+    try (BufferedReader bufferedReader = new BufferedReader(new FileReader(filepath))) {
+      while ((lineFromFile = bufferedReader.readLine()) != null) {
+        if (!lineFromFile.isEmpty()) {
+          JSONObject jsnObj = new JSONObject();
+          System.out.println("Line: ==>" + lineFromFile);
+
+          String[] split = lineFromFile.split(" ");
+          jsnObj.put(lineFromFile, split[0]);
+        }
+
+      }
+
+    } catch (FileNotFoundException e) {
+      e.printStackTrace();
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+
+    return newArray;
+  }
 }
