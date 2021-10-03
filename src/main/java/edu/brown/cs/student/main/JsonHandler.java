@@ -17,11 +17,16 @@ import java.io.FileReader;
  */
 public class JsonHandler {
 
-
   public static void main(String[] args, String filepath) {
     JSONArray array = readJSONfile(filepath);
     convertJSONList(array);
   }
+
+  public void convertJSONObject() {
+
+  }
+
+
   // converts our JSON object to a ArrayList object
   private static void convertJSONList(JSONArray array) {
     final ArrayList<?> JSRead = new Gson().fromJson(array.toString(),
@@ -43,7 +48,6 @@ public class JsonHandler {
           String[] split = lineFromFile.split(" ");
           jsnObj.put(lineFromFile, split[0]);
         }
-
       }
 
     } catch (FileNotFoundException e) {
