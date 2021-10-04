@@ -3,10 +3,10 @@ package edu.brown.cs.student.main;
 import java.util.Objects;
 
 public class Reviews implements JSONObject {
-    private String review_text;
-    private String review_summary;
-    private String review_date;
-    private Integer id;
+    private final String review_text;
+    private final String review_summary;
+    private final String review_date;
+    private final Integer id;
 
     private Reviews(String review_text, String review_summary,
                     String review_date, Number id){

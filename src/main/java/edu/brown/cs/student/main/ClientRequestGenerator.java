@@ -23,12 +23,10 @@ public class ClientRequestGenerator {
     String reqUri =
         "https://runwayapi.herokuapp.com/" + data + "-" + endpoint + auth;
 
-    HttpRequest request = HttpRequest.newBuilder()
+    return HttpRequest.newBuilder()
         .GET()
         .uri(URI.create(reqUri))
         .header("x-api-key", apiKey)
         .build();
-
-    return request;
   }
 }

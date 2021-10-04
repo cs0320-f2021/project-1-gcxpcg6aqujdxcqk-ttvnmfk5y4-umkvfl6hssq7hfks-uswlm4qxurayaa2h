@@ -15,19 +15,16 @@ public class ApiClient {
     // HttpClient with version HTTP_2 and connection timeout of 15 seconds.
     // See https://docs.oracle.com/en/java/javase/11/docs/api/java.net.http/java/net/http/HttpClient.html
 
-    HttpClient client = HttpClient.newBuilder()
+    this.client = HttpClient.newBuilder()
         .version(HttpClient.Version.HTTP_2)
         .connectTimeout(Duration.ofSeconds(15))
         .build();
-
-    this.client = client;
   }
 
   public void makeRequest(HttpRequest req) {
     try {
       HttpResponse<String> apiResponse = client.send(req, HttpResponse.BodyHandlers.ofString());
       System.out.println("Status " + apiResponse.statusCode());
-      System.out.println(apiResponse.body());
       data = apiResponse.body();
 
     } catch (IOException ioe) {

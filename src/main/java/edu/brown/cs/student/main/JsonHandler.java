@@ -1,19 +1,9 @@
 package edu.brown.cs.student.main;
 
-import com.google.common.reflect.TypeToken;
 import com.google.gson.Gson;
-import com.google.gson.JsonArray;
 
-import java.io.*;
-import java.lang.reflect.Type;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.ArrayList;
+import java.io.FileNotFoundException;
 
-import org.json.JSONArray;
-
-import java.io.FileReader;
-import java.util.List;
 
 /**
  * Class handles opening JSON files and using fromJSON to create new objects to
@@ -58,5 +48,9 @@ public class JsonHandler {
             default:
                 return null;
         }
+    }
+
+    public void handleArg(String[] arguments) throws FileNotFoundException {
+        this.storeData(arguments[1], arguments[2]);
     }
 }

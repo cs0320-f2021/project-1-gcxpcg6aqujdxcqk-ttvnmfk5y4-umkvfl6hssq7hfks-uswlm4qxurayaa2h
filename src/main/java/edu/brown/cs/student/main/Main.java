@@ -70,6 +70,7 @@ public final class Main {
       argHashMap.put("stars", new StarsHandler());
       argHashMap.put("naive_neighbors", new NaiveNeighborsHandler());
       argHashMap.put("dataGet", new ApiHandler()); //added repl commands for api
+      argHashMap.put("openJson", new ApiHandler()); //added repl commands for json reader
 
       while ((input = br.readLine()) != null) {
         input = input.trim();
