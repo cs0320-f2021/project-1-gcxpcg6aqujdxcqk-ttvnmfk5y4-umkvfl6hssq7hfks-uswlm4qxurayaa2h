@@ -22,6 +22,8 @@ import spark.Spark;
 import spark.TemplateViewRoute;
 import spark.template.freemarker.FreeMarkerEngine;
 
+import javax.print.event.PrintJobEvent;
+
 /**
  * The Main class of our project. This is where execution begins.
  */
@@ -69,24 +71,37 @@ public final class Main {
       argHashMap.put("subtract", new SubtractHandler());
       argHashMap.put("stars", new StarsHandler());
       argHashMap.put("naive_neighbors", new NaiveNeighborsHandler());
+
+      argHashMap.put("users", new UsersHandler());
+      argHashMap.put("similar", new SimilarHandler());
+      argHashMap.put("classify", new ClassifyHandler());
       argHashMap.put("dataGet", new ApiHandler()); //added repl commands for api
       argHashMap.put("openJson", new ApiHandler()); //added repl commands for json reader
+      
+      ProjectDataContainer.setDataStructure(new KdTree(3));
 
       while ((input = br.readLine()) != null) {
         input = input.trim();
         String[] arguments = input.split(" ");
+
         ArgumentHandler handler = argHashMap.get(arguments[0]);
 
         //TODO before, Ben's code checked: `if the reader hasn't already been created and the command isn't stars, throw an error`
         if (handler == null) {
-          StarsErrorHandler.wrongArgError();
+          ProjectErrorHandler.wrongArgError();
+        }
+
+        // Ask the handler whether there's the right no of arguments
+        if (!handler.checkNumArgs(arguments)) {
+          ProjectErrorHandler.invalidInputError(handler.getUsageString());
         } else {
           handler.handleArg(arguments);
         }
 
       }
     } catch (Exception e) {
-      StarsErrorHandler.brokenReplError(); //e.printStackTrace();
+      e.printStackTrace();
+      ProjectErrorHandler.brokenReplError(); //e.printStackTrace();
     }
   }
 

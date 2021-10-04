@@ -87,4 +87,12 @@ public class ApiHandler implements ArgumentHandler {
         break;
     }
   }
+
+  public boolean checkNumArgs(String[] arguments) {
+    return arguments.length == 2;
+  }
+
+  public String getUsageString() {
+    return "usage: somethingGet <what>";
+  }
 }

@@ -11,7 +11,7 @@ import java.io.FileNotFoundException;
  */
 public class JsonHandler {
 
-    private static final Gson gson = new Gson();
+  private static final Gson gson = new Gson();
 
     /**
      * Methods takes in the JSON file and returns a Java object
