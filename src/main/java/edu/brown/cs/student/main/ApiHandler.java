@@ -11,7 +11,15 @@ public class ApiHandler implements ArgumentHandler {
     } else if (arguments[1].equals("rent")){
       client.makeRequest(ClientRequestGenerator.getRentRequest());
     } else {
-      StarsErrorHandler.wrongArgError();
+      ProjectErrorHandler.wrongArgError();
     }
+  }
+
+  public boolean checkNumArgs(String[] arguments) {
+    return arguments.length == 2;
+  }
+
+  public String getUsageString() {
+    return "usage: somethingGet <what>";
   }
 }

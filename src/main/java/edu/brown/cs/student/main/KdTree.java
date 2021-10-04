@@ -103,10 +103,14 @@ public class KdTree implements ProjectDataStructure {
     return nn;
   }
 
-
-  private void buildTree() {
-    //implement later
+  //TODO connect this function
+  private void buildTree(JSONObject[] jsonArray) {
     //go through json/table and add each row
+    for (JSONObject jo : jsonArray) {
+      //TODO what sort of node to add?
+      //this.addNode(new Node(jo.hashCode(), k), );
+    }
+
     //called by loadData methods
   }
 
@@ -119,21 +123,24 @@ public class KdTree implements ProjectDataStructure {
     return root != null;
   }
 
+  // don't need to do this one for now
   public void loadDataSql(String pathToDb) {
-    // don't need to do this one
     ProjectErrorHandler.notImplementedError();
   }
 
+  //TODO connect this function
   public void loadDataJson(String pathToJson) {
     // implement later
     ProjectErrorHandler.notImplementedError();
   }
 
+  //TODO connect this function
   public void loadFromOnline() {
     //implement later
     ProjectErrorHandler.notImplementedError();
   }
 
+  //TODO call similarToCoords within this function
   public void similarToId(int numNeighbors, int userId) {
     //get the coords for this ID and then call similarToCoords
   }
@@ -154,12 +161,14 @@ public class KdTree implements ProjectDataStructure {
     }
   }
 
+  //TODO call classifyCords within this function
   public void classifyId(int numNeighbors, int userId) {
     System.out.println("classifyId" + Integer.toString(userId));
     //get the coords for this ID and then call classifyCoords
   }
 
   //the main functionality is here
+  //TODO similar logic as similarToCoords but with hashmap of horoscopes 
   public void classifyCoords(int numNeighbors, int[] targetCoords) {
     //call similartocoords to get a list of IDs
     //and then convert those to horoscopes and print out counts
