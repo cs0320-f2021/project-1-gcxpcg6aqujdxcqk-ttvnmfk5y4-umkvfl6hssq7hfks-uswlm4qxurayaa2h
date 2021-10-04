@@ -21,7 +21,20 @@ public class KdTree implements ProjectDataStructure {
 
 
   private void addNode(Node newNode, Node root, int currentLayer) {
-    //TODO
+    if newNode.getCoordinates().length != k {
+      ProjectErrorHandler.wrongDimensionError();
+    }
+    int currentDimention = currentLayer % k;
+    if (Node.root.equals(null)){
+      this.root = newNode;}
+    else{
+      if(newNode[currentDimention] <= root[currentDimention]){
+        addNode(newNode,root.lchild,currentLayer + 1);
+      }
+      else{
+        addNode(newNode,root.rchild,currentLayer + 1);
+      }
+    }
   }
 
   /**
