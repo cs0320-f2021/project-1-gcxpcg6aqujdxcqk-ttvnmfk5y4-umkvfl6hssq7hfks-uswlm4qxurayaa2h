@@ -1,5 +1,7 @@
 package edu.brown.cs.student.main;
 
+import java.util.Objects;
+
 public class Clothing implements JSONObject {
     private String fit;
     private int user_id;
@@ -33,5 +35,28 @@ public class Clothing implements JSONObject {
         this.category = category;
         this.size = size;
         this.id = id;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Clothing clothing = (Clothing) o;
+        return user_id == clothing.user_id && item_id == clothing.item_id &&
+            size == clothing.size &&
+            id == clothing.id && Objects.equals(fit, clothing.fit) &&
+            Objects.equals(rating, clothing.rating) &&
+            Objects.equals(rented_for, clothing.rented_for) &&
+            Objects.equals(height, clothing.height) &&
+            Objects.equals(category, clothing.category);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(fit, user_id, item_id, rating, rented_for, height, category, size, id);
     }
 }
