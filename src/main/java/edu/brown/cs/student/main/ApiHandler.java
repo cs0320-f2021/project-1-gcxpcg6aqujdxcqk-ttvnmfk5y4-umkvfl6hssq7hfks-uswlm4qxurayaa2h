@@ -5,6 +5,8 @@ import java.util.HashSet;
 
 public class ApiHandler implements ArgumentHandler {
 
+  private HashSet hashSet;
+
   public void handleArg(String[] arguments) {
     ApiClient client = new ApiClient();
     JsonHandler handler = new JsonHandler();
@@ -32,6 +34,7 @@ public class ApiHandler implements ArgumentHandler {
         }
 
         System.out.println(userList.size());
+        hashSet = userList;
 
         break;
       case "reviews":
@@ -56,6 +59,7 @@ public class ApiHandler implements ArgumentHandler {
         }
 
         System.out.println(reviewList.size());
+        hashSet = reviewList;
 
         break;
       case "rent":
@@ -81,6 +85,7 @@ public class ApiHandler implements ArgumentHandler {
         }
 
         System.out.println(rent.size());
+        hashSet = rent;
         break;
       default:
         System.out.println("ERROR: unrecognized dataGet command");
@@ -95,4 +100,9 @@ public class ApiHandler implements ArgumentHandler {
   public String getUsageString() {
     return "usage: somethingGet <what>";
   }
+
+  public HashSet getHashSet() {
+    return hashSet;
+  }
+  
 }
