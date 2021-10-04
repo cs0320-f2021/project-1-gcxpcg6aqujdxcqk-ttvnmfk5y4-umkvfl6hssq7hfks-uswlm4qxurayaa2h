@@ -3,11 +3,11 @@ package edu.brown.cs.student.main;
 import java.util.Objects;
 
 public class Users implements JSONObject {
-    private final Number user_id;
+    private final Integer user_id;
     private final String weight;
     private final String bust_size;
     private final String height;
-    private final Number age;
+    private final int age;
     private final String body_type;
     private final String horoscope;
 
@@ -22,13 +22,13 @@ public class Users implements JSONObject {
      * @param horoscope of the customer
      */
 
-    public Users(Number user_id, String weight, String bust_size, String height,
-                    Number age, String body_type, String horoscope){
-        this.user_id = user_id.intValue();
+    public Users(int user_id, String weight, String bust_size, String height,
+                    int age, String body_type, String horoscope){
+        this.user_id = user_id;
         this.weight = weight;
         this.bust_size = bust_size;
         this.height = height;
-        this.age = age.intValue();
+        this.age = age;
         this.body_type = body_type;
         this.horoscope = horoscope;
     }

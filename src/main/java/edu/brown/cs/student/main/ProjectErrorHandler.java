@@ -26,7 +26,7 @@ public final class ProjectErrorHandler {
     System.out.println("ERROR: feature not yet implemented");
   }
 
-  public static void wrongDimensionError() {System.out.println("ERROR: wrong dimension")}
+  public static void wrongDimensionError() {System.out.println("ERROR: wrong dimension");}
 
 }
 

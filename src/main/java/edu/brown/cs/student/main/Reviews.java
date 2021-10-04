@@ -8,7 +8,7 @@ public class Reviews implements JSONObject {
     private final String review_date;
     private final Integer id;
 
-    private Reviews(String review_text, String review_summary,
+    public Reviews(String review_text, String review_summary,
                     String review_date, Number id){
         this.review_text = review_text;
         this.review_summary = review_summary;

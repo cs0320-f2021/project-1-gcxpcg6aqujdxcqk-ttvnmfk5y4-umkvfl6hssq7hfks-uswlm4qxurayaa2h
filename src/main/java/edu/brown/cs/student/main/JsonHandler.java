@@ -2,7 +2,11 @@ package edu.brown.cs.student.main;
 
 import com.google.gson.Gson;
 
+import java.io.BufferedReader;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
 
 
 /**
@@ -18,16 +22,37 @@ public class JsonHandler {
      * @param file which is the String name of the JSON file
      * @return Clothing object in an array
      */
-    public Clothing[] convertClothing(String file){
-        return gson.fromJson(file, Clothing[].class);
+
+    public String convertFilePath (String file) throws FileNotFoundException {
+        StringBuilder returnValue = new StringBuilder();
+        BufferedReader br = null;
+        try {
+            br = new BufferedReader(new FileReader(file));
+            String line;
+            while ((line = br.readLine()) != null) {
+                returnValue.append(line);
+            }} catch( FileNotFoundException f){
+                System.out.println("ERROR: File not found");
+            } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return returnValue.toString();
+
     }
 
-    public Reviews[] convertReviews (String file){
-        return gson.fromJson(file, Reviews[].class);
+    public Clothing[] convertClothing(String file) throws FileNotFoundException {
+        String string = convertFilePath(file);
+        return gson.fromJson(string, Clothing[].class);
     }
 
-    public Users[] convertUsers (String file){
-        return gson.fromJson(file, Users[].class);
+    public Reviews[] convertReviews (String file) throws FileNotFoundException {
+        String string2 = convertFilePath(file);
+        return gson.fromJson(string2, Reviews[].class);
+    }
+
+    public Users[] convertUsers (String file) throws FileNotFoundException {
+        String string3 = convertFilePath(file);
+        return gson.fromJson(string3, Users[].class);
     }
 
     /**
@@ -37,7 +62,7 @@ public class JsonHandler {
      * @param type of the java object we want to convert our file into
      * @return JsonObject array
      */
-    public JSONObject[] storeData(String filepath, String type) {
+    public JSONObject[] storeData(String filepath, String type) throws FileNotFoundException {
         switch (type) {
             case "clothing":
                 return convertClothing(filepath);
