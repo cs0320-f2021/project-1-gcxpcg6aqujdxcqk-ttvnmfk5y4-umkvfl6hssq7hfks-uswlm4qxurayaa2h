@@ -7,6 +7,7 @@ public class Clothing implements JSONObject {
     private final int user_id;
     private final int item_id;
     private final String rating;
+    private final String rented_for;
     private final String category;
     private final int size;
     private final int id;
@@ -22,12 +23,13 @@ public class Clothing implements JSONObject {
      * @param id of the customer
      */
 
-    public Clothing(String fit, int user_id, int item_id, String rating,
+    public Clothing(String fit, int user_id, int item_id, String rating, String rented_for,
                     String category, int size, int id) {
         this.fit = fit;
         this.user_id = user_id;
         this.item_id = item_id;
         this.rating = rating;
+        this.rented_for = rented_for;
         this.category = category;
         this.size = size;
         this.id = id;
