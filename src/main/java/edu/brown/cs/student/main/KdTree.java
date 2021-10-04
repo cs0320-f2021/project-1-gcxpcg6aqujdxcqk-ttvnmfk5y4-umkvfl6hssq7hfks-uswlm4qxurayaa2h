@@ -12,27 +12,27 @@ public class KdTree implements ProjectDataStructure {
 
   /**
    * Constructor for a KdTree object
-   * @param k - dimensionality of the tree
+   * @param dimension - dimensionality of the tree
    */
-  public KdTree(int k) {
-    k = k;
+  public KdTree(int dimension) {
+    k = dimension;
     root = null;
   }
 
 
-  private void addNode(Node newNode, Node root, int currentLayer) {
-    if newNode.getCoordinates().length != k {
+  private void addNode(Node newNode, Node addTo, int currentLayer) {
+    if (newNode.getCoordinates().length != k) {
       ProjectErrorHandler.wrongDimensionError();
     }
-    int currentDimention = currentLayer % k;
-    if (Node.root.equals(null)){
+    int currentDimension = currentLayer % k;
+    if (root.equals(null)){
       this.root = newNode;}
-    else{
-      if(newNode[currentDimention] <= root[currentDimention]){
-        addNode(newNode,root.lchild,currentLayer + 1);
+    else {
+      if(newNode.getCoordinates()[currentDimension] <= addTo.getCoordinates()[currentDimension]){
+        addNode(newNode, addTo.getLChild(),currentLayer + 1);
       }
       else{
-        addNode(newNode,root.rchild,currentLayer + 1);
+        addNode(newNode, addTo.getRChild(),currentLayer + 1);
       }
     }
   }
