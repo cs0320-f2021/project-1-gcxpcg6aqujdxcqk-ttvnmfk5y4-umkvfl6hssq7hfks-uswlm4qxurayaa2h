@@ -2,7 +2,7 @@ package edu.brown.cs.student.main;
 
 public class UsersHandler implements ArgumentHandler {
   public void handleArg(String[] arguments) {
-    if (arguments[1] == "online") {
+    if (arguments[1].equals("online")) {
       System.out.println("TODO online");
     } else {
       String jsonFileName = arguments[1];
