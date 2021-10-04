@@ -1,6 +1,8 @@
 package edu.brown.cs.student.main;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class KdTree implements ProjectDataStructure {
@@ -47,6 +49,12 @@ public class KdTree implements ProjectDataStructure {
    * @return nn, HashMap of Nodes that are nearest neighbors -> their distances
    */
   private HashMap<Node, Double> nearestNeighbors(Node current, int[] targetCoords, HashMap<Node, Double> nn, int numNeighbors, int currentLayer) {
+    // Make sure that targetCoords is the right length
+    if (targetCoords.length != k) {
+      ProjectErrorHandler.invalidInputError("similarToCoords targetCoords must be"+k+"dimensions");
+    }
+
+    // Get the current dimension, distance from current to targetCoords
     int currentDim = currentLayer % k;
     Double d = current.getDistanceFrom(targetCoords);
 
@@ -113,22 +121,33 @@ public class KdTree implements ProjectDataStructure {
     ProjectErrorHandler.notImplementedError();
   }
 
-  public void similarToId(int userId) {
+  public void similarToId(int numNeighbors, int userId) {
     //get the coords for this ID and then call similarToCoords
   }
 
-  public void similarToCoords(int weight, int height, int age) {
-    //the main functionality is here
-    //call kdtree search and print out the list
+  //the main functionality is here
+  // targetCoords instead of (int weight, int height, int age)
+  public void similarToCoords(int numNeighbors, int[] targetCoords) {
+    // Call kdtree search and print out the list
+    HashMap<Node, Double> nn = new HashMap<>();
+    nearestNeighbors(root, targetCoords, nn, numNeighbors, 0);
+    assert (numNeighbors == nn.size());
+
+    // make this more generic?
+    List<Map.Entry<Node, Double>> nnlist = new ArrayList<>(nn.entrySet());
+    nnlist.sort(Map.Entry.comparingByValue());
+    for (Map.Entry<Node, Double> entry: nnlist) {
+      System.out.println(entry.getKey());
+    }
   }
 
-  public void classifyId(int userId) {
+  public void classifyId(int numNeighbors, int userId) {
     System.out.println("classifyId" + Integer.toString(userId));
     //get the coords for this ID and then call classifyCoords
   }
 
-  public void classifyCoords(int weight, int height, int age) {
-    //the main functionality is here
+  //the main functionality is here
+  public void classifyCoords(int numNeighbors, int[] targetCoords) {
     //call similartocoords to get a list of IDs
     //and then convert those to horoscopes and print out counts
   }

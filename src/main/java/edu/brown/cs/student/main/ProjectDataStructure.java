@@ -11,10 +11,10 @@ public interface ProjectDataStructure {
   void loadFromOnline();
 
   // Functions used by similar command
-  void similarToId(int userId);
-  void similarToCoords(int weight, int height, int age);
+  void similarToId(int numNeighbors, int userId);
+  void similarToCoords(int numNeighbors, int[] targetCoords);
 
   // Functions used by classify command
-  void classifyId(int userId);
-  void classifyCoords(int weight, int height, int age);
+  void classifyId(int numNeighbors, int userId);
+  void classifyCoords(int numNeighbors, int[] targetCoords);
 }

@@ -7,9 +7,10 @@ public class ClassifyHandler implements ArgumentHandler {
       ProjectDataStructure kdTree = ProjectDataContainer.getDataStructure();
 
       if (arguments.length == 3) {
-        kdTree.classifyId(69);
+        kdTree.classifyId(k, Integer.parseInt(arguments[2]));
       } else if (arguments.length == 5) {
-        kdTree.classifyCoords(4, 20, 69);
+        int[] coords = new int[] {Integer.parseInt(arguments[2]), Integer.parseInt(arguments[3]), Integer.parseInt(arguments[4])};
+        kdTree.classifyCoords(k, coords);
       } else {
         ProjectErrorHandler.invalidInputError("classify");
       }
