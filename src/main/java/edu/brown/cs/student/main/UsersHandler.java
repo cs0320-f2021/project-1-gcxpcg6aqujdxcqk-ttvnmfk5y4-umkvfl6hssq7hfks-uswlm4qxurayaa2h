@@ -2,10 +2,19 @@ package edu.brown.cs.student.main;
 
 public class UsersHandler implements ArgumentHandler {
   public void handleArg(String[] arguments) {
-    if (arguments[1] == "online") {
+    if (arguments[1].equals("online")) {
       System.out.println("TODO online");
     } else {
-      System.out.println("TODO json");
+      String jsonFileName = arguments[1];
+      JsonHandler jh = new JsonHandler();
+      Users[] usersArray = jh.convertUsers(jsonFileName);
+
+      // create a new tree and add data in there
+      KdTree newTree = new KdTree(3);
+      newTree.loadData(usersArray);
+
+      // set tree to be the global data structure
+      ProjectDataContainer.setDataStructure(newTree);
     }
   }
 
@@ -14,10 +23,8 @@ public class UsersHandler implements ArgumentHandler {
   }
 
   public String getUsageString() {
-    return "usage: users path/to/jsonfile.json ... for API pursuers \n " +
-        "       users online ...";
-
-
+    return "usage: users path/to/jsonfile.json \n " +
+        "       users online";
   }
 
 }

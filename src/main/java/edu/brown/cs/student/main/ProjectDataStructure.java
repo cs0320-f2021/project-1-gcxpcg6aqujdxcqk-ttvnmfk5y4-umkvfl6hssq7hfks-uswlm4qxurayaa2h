@@ -6,9 +6,7 @@ public interface ProjectDataStructure {
   boolean containsData();
 
   // Functions to load in data
-  void loadDataSql(String pathToDb);
-  void loadDataJson(String pathToJson);
-  void loadFromOnline();
+  void loadData(JSONObject[] jsonObjects);
 
   // Functions used by similar command
   void similarToId(int numNeighbors, int userId);

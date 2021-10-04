@@ -33,6 +33,14 @@ public class Users implements JSONObject {
         this.horoscope = horoscope;
     }
 
+    /**
+     * Gets the three coordinates we're interested in in an array
+     * @return [<weight in lbs> <height in inches> <age in years>]
+     */
+    public int[] getCoordinates() {
+        return new int[]{Integer.parseInt(weight), Integer.parseInt(height), (int) age};
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {

@@ -16,6 +16,14 @@ public class Reviews implements JSONObject {
         this.id = id.intValue();
     }
 
+    /**
+     * Gets the three coordinates we're interested in in an array
+     * @return TODO
+     */
+    public int[] getCoordinates() {
+        return new int[]{};
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
