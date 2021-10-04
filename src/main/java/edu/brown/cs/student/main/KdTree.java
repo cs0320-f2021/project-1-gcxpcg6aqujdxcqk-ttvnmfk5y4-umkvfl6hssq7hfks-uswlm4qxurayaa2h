@@ -123,22 +123,13 @@ public class KdTree implements ProjectDataStructure {
     return root != null;
   }
 
-  // don't need to do this one for now
-  public void loadDataSql(String pathToDb) {
-    ProjectErrorHandler.notImplementedError();
-  }
 
   //TODO connect this function
-  public void loadDataJson(String pathToJson) {
+  public void loadData(JSONObject[] jsonObjects) {
     // implement later
     ProjectErrorHandler.notImplementedError();
   }
 
-  //TODO connect this function
-  public void loadFromOnline() {
-    //implement later
-    ProjectErrorHandler.notImplementedError();
-  }
 
   //TODO call similarToCoords within this function
   public void similarToId(int numNeighbors, int userId) {

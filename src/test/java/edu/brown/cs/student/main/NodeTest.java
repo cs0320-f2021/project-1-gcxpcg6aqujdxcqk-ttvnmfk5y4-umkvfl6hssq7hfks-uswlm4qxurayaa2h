@@ -18,7 +18,7 @@ public class NodeTest {
     public void testGetCoordinates() {
         //testing for 1D
         Node testNodeOne = new Node(1, 1, new int[]{5});
-        int[]  oneDimOutput = testNodeOne.getCoordinates();
+        int[] oneDimOutput = testNodeOne.getCoordinates();
         int[] oneDimResult = new int[]{5};
         assertArrayEquals(oneDimResult, oneDimOutput);
 
