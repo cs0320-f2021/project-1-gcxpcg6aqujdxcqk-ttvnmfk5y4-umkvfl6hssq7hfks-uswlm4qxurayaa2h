@@ -69,9 +69,7 @@ public final class Main {
       argHashMap.put("subtract", new SubtractHandler());
       argHashMap.put("stars", new StarsHandler());
       argHashMap.put("naive_neighbors", new NaiveNeighborsHandler());
-      argHashMap.put("usersGet", new ApiHandler()); //added repl commands for api
-      argHashMap.put("reviewsGet", new ApiHandler());
-      argHashMap.put("rentGet", new ApiHandler());
+      argHashMap.put("dataGet", new ApiHandler()); //added repl commands for api
 
       while ((input = br.readLine()) != null) {
         input = input.trim();

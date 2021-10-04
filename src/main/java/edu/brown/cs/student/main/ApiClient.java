@@ -9,6 +9,7 @@ import java.time.Duration;
 public class ApiClient {
 
   private final HttpClient client;
+  private String data;
 
   public ApiClient() {
     // HttpClient with version HTTP_2 and connection timeout of 15 seconds.
@@ -27,6 +28,7 @@ public class ApiClient {
       HttpResponse<String> apiResponse = client.send(req, HttpResponse.BodyHandlers.ofString());
       System.out.println("Status " + apiResponse.statusCode());
       System.out.println(apiResponse.body());
+      data = apiResponse.body();
 
     } catch (IOException ioe) {
       System.out.println("An I/O error occurred when sending or receiving data.");
@@ -45,5 +47,11 @@ public class ApiClient {
       System.out.println("There was a security configuration error.");
       System.out.println(se.getMessage());
     }
+  }
+
+  public String getData() {
+    String dataTemp = data;
+    data  = null;
+    return dataTemp;
   }
 }

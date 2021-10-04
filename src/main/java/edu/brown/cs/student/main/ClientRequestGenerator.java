@@ -13,31 +13,19 @@ public class ClientRequestGenerator {
    *
    * @return an HttpRequest object for accessing and posting to the secured resource.
    */
-  public static HttpRequest getUsersRequest() {
+  public static HttpRequest getUsersRequest(String endpoint) {
     List<String> arguments = ClientAuth.getApiKey();
     String apiKey = arguments.get(0);
     String csLogin = arguments.get(1);
 
     String auth = "?auth=" + csLogin + "&key=" + apiKey;
 
-    String reqUriOne =
-        "https://runwayapi.herokuapp.com/users-one" + auth;
-
-    String reqUriTwo =
-        "https://runwayapi.herokuapp.com/users-two" + auth;
-
-    String reqUriThree =
-        "https://runwayapi.herokuapp.com/users-three" + auth;
-
-    String reqUriFour =
-        "https://runwayapi.herokuapp.com/users-four" + auth;
-
-    String reqUriFive =
-        "https://runwayapi.herokuapp.com/users-five" + auth;
+    String reqUri =
+        "https://runwayapi.herokuapp.com/users-" + endpoint + auth;
 
     HttpRequest request = HttpRequest.newBuilder()
         .GET()
-        .uri(URI.create(reqUriThree))
+        .uri(URI.create(reqUri))
         .header("x-api-key", apiKey)
         .build();
 

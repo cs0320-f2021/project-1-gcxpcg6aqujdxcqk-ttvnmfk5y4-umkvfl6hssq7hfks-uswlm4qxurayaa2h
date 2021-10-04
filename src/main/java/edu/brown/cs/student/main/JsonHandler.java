@@ -28,15 +28,15 @@ public class JsonHandler {
      * @param file which is the String name of the JSON file
      * @return Clothing object in an array
      */
-    private Clothing[] convertClothing(String file){
+    public Clothing[] convertClothing(String file){
         return gson.fromJson(file, Clothing[].class);
     }
 
-    private Reviews[] convertReviews (String file){
+    public Reviews[] convertReviews (String file){
         return gson.fromJson(file, Reviews[].class);
     }
 
-    private Users[] convertUsers (String file){
+    public Users[] convertUsers (String file){
         return gson.fromJson(file, Users[].class);
     }
 
@@ -47,8 +47,8 @@ public class JsonHandler {
      * @param type of the java object we want to convert our file into
      * @return JsonObject array
      */
-    public JSONObject[] storeData(String filepath, String type){
-        switch (type){
+    public JSONObject[] storeData(String filepath, String type) {
+        switch (type) {
             case "clothing":
                 return convertClothing(filepath);
             case "reviews":
@@ -58,9 +58,5 @@ public class JsonHandler {
             default:
                 return null;
         }
-      }
     }
-}
-    return newArray;
-  }
 }
