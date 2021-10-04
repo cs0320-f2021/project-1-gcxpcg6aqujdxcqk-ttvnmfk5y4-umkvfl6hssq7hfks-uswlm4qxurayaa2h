@@ -103,17 +103,6 @@ public class KdTree implements ProjectDataStructure {
     return nn;
   }
 
-  //TODO connect this function
-  private void buildTree(JSONObject[] jsonArray) {
-    //go through json/table and add each row
-    for (JSONObject jo : jsonArray) {
-      //TODO what sort of node to add?
-      //this.addNode(new Node(jo.hashCode(), k), );
-    }
-
-    //called by loadData methods
-  }
-
 
   /**
    * Checks if there is data in this KdTree
@@ -126,8 +115,21 @@ public class KdTree implements ProjectDataStructure {
 
   //TODO connect this function
   public void loadData(JSONObject[] jsonObjects) {
-    // implement later
-    ProjectErrorHandler.notImplementedError();
+    //go through json/table and add each row
+    for (JSONObject jo : jsonObjects) {
+      // get info about this jsonobject
+      int[] joCoords = jo.getCoordinates();
+      int jk = joCoords.length;
+
+      // get the coordinates out and create a new node, and add it
+      if (jk == 0) {
+        ProjectErrorHandler.notImplementedError();
+      } else {
+        Node newNode = new Node(jo.hashCode(), jk, joCoords);
+        this.addNode(newNode, root, 0);
+        System.out.println(newNode.getCoordinates());
+      }
+    }
   }
 
 
