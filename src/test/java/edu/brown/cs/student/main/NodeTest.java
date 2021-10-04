@@ -5,6 +5,8 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
+import java.util.stream.IntStream;
+
 public class NodeTest {
 
     /**
@@ -29,28 +31,28 @@ public class NodeTest {
         //testing for 3D
         Node testNodeThree = new Node(3, 3, new int[]{5, 4, 3});
         int[]  threeDimOutput = testNodeThree.getCoordinates();
-        int[] threeDimResult = new int[]{5, 4, 3}; 
-        assertArrayEquals(threeDimResult, threeDimOutput, 0.01);
+        int[] threeDimResult = new int[]{5, 4, 3};
+        assertArrayEquals(threeDimResult, threeDimOutput);
 
         //testing for large
-        Node testNodeLargeOne = new Node(10);
+        Node testNodeLargeOne = new Node(10, 10, IntStream.rangeClosed(1, 10).toArray());
         int[]  largeOneDimOutput = testNodeLargeOne.getCoordinates();
-        int[] largeOneDimResult = int[10]
-        assertEquals(largeOneDimResultDimResult, threeDimOutput, 0.01);
-        Node testNodeLargeTwo = new Node(40);
-        int[]  largtwoDimOutput = testNode.getCoordinates();
-        int[] largeOneDimResult = int[40]
-        assertEquals(largeOneDimResultDimResult, threeDimOutput, 0.01);
-        Node testNodeLargeThree = new Node(100);
-        int[]  largthreeDimOutput = testNodeLargeThree.getCoordinates();
-        int[] largeThreeDimResult = int[100]
-        assertEquals(largeThreeDimResultDimResultDimResult, largeThreeDimResult, 0.01);
+        int[] largeOneDimResult = IntStream.rangeClosed(1, 10).toArray(); //are these distinct objects?
+        assertArrayEquals(largeOneDimResult, largeOneDimOutput);
+        Node testNodeLargeTwo = new Node(40, 40, IntStream.rangeClosed(1, 40).toArray());
+        int[]  largeTwoDimOutput = testNodeLargeTwo.getCoordinates();
+        int[] largeTwoDimResult = IntStream.rangeClosed(1, 40).toArray();
+        assertArrayEquals(largeTwoDimResult, largeTwoDimOutput);
+        Node testNodeLargeThree = new Node(100, 100, IntStream.rangeClosed(1, 100).toArray());
+        int[]  largeThreeDimOutput = testNodeLargeThree.getCoordinates();
+        int[] largeThreeDimResult = IntStream.rangeClosed(1, 100).toArray();
+        assertEquals(largeThreeDimResult, largeThreeDimOutput);
     }
 
     @Test
     public void testGetDistanceFrom(){
         // regular 1D values
-        Node testreg1D = new Node(1);
+        Node testreg1D = new Node(1, 1, new int[]{64});
 
 
         //all null 1D values
@@ -88,7 +90,7 @@ public class NodeTest {
     }
     public void testcompareAndGetChild(){
         //greater than 1D
-        Node testreg1D = new Node(1);
+        Node testreg1D = new Node(1, 1, new int[]{64});
 
 
         // smaller than 1D
