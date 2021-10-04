@@ -47,8 +47,6 @@ public final class Main {
     this.args = args;
   }
 
-
-
   private void run() {
     // set up parsing of command line flags
     OptionParser parser = new OptionParser();
@@ -73,11 +71,16 @@ public final class Main {
       argHashMap.put("subtract", new SubtractHandler());
       argHashMap.put("stars", new StarsHandler());
       argHashMap.put("naive_neighbors", new NaiveNeighborsHandler());
+
       argHashMap.put("users", new UsersHandler());
       argHashMap.put("similar", new SimilarHandler());
       argHashMap.put("classify", new ClassifyHandler());
-
+      argHashMap.put("usersGet", new ApiHandler()); //added repl commands for api
+      argHashMap.put("reviewsGet", new ApiHandler());
+      argHashMap.put("rentGet", new ApiHandler());
+      
       ProjectDataContainer.setDataStructure(new KdTree(3));
+
 
       while ((input = br.readLine()) != null) {
         input = input.trim();

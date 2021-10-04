@@ -1,7 +1,11 @@
-PROJECT: onboarding
+PROJECT: Project 1 Sprint
 
-DESCRIPTION:
+DESCRIPTION: API and KD-Tree
 
-TEAM MEMBERS:
+TEAM MEMBERS: Kat, Ben, Sheridan, Livia
 
-DESIGN CHOICES:
+Clothing, Review, and Users classes are the java objects in which the Json file is stored. 
+They all implement the JSONObject interface so that Java registers that they are of the same type
+
+Recieved some help from Helen Huang -- helped me update JsonHandler.
+JsonHandler class reads the json files and convert them into the specific java object (so the rental clothing json file will be stored as a Clothing[] object, etc.)
