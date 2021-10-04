@@ -168,7 +168,7 @@ public class KdTree implements ProjectDataStructure {
   }
 
   //the main functionality is here
-  //TODO similar logic as similarToCoords but with hashmap of horoscopes 
+  //TODO similar logic as similarToCoords but with hashmap of horoscopes
   public void classifyCoords(int numNeighbors, int[] targetCoords) {
     //call similartocoords to get a list of IDs
     //and then convert those to horoscopes and print out counts

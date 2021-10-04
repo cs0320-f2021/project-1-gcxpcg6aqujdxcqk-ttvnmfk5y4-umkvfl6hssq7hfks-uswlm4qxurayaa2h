@@ -1,7 +1,6 @@
 package edu.brown.cs.student.main;
 
 import java.util.Arrays;
-import java.util.Comparator;
 
 import static java.util.Objects.hash;
 
@@ -13,10 +12,13 @@ public class Node {
   private Node lchild;
   private Node rchild;
 
-  public Node(int nodeId, int k) {
-    nodeId = nodeId;
+  public Node(int id, int k, int[] coords) {
+    if (coordinates.length != k) {
+      ProjectErrorHandler.invalidInputError("coords must be same length as k");
+    }
+    nodeId = id;
     dimension = k;
-    coordinates = new int[k];
+    coordinates = coords;
     parent = null;
     lchild = null;
     rchild = null;
