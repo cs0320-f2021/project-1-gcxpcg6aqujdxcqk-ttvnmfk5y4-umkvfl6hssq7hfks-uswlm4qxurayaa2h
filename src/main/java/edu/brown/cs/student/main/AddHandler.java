@@ -13,4 +13,12 @@ public class AddHandler implements ArgumentHandler {
 
   }
 
+  public boolean checkNumArgs(String[] arguments) {
+    return (arguments.length == 3);
+  }
+
+  public String getUsageString() {
+    return "usage: add <int1> <int2>";
+  }
+
 }
