@@ -1,11 +1,11 @@
 package edu.brown.cs.student.main;
 
 public class Star {
-  private int starID;
-  private String properName;
-  private double x;
-  private double y;
-  private double z;
+  private final int starID;
+  private final String properName;
+  private final double x;
+  private final double y;
+  private final double z;
   private double distance;
 
   /**

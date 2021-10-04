@@ -75,12 +75,10 @@ public final class Main {
       argHashMap.put("users", new UsersHandler());
       argHashMap.put("similar", new SimilarHandler());
       argHashMap.put("classify", new ClassifyHandler());
-      argHashMap.put("usersGet", new ApiHandler()); //added repl commands for api
-      argHashMap.put("reviewsGet", new ApiHandler());
-      argHashMap.put("rentGet", new ApiHandler());
+      argHashMap.put("dataGet", new ApiHandler()); //added repl commands for api
+      argHashMap.put("openJson", new ApiHandler()); //added repl commands for json reader
       
       ProjectDataContainer.setDataStructure(new KdTree(3));
-
 
       while ((input = br.readLine()) != null) {
         input = input.trim();
