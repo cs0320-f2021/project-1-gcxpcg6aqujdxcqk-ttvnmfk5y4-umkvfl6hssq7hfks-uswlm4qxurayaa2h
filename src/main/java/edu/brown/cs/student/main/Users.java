@@ -1,13 +1,15 @@
 package edu.brown.cs.student.main;
 
+import java.util.Objects;
+
 public class Users implements JSONObject {
-    private Number user_id;
-    private String weight;
-    private String bust_size;
-    private String height;
-    private Number age;
-    private String body_type;
-    private String horoscope;
+    private final Number user_id;
+    private final String weight;
+    private final String bust_size;
+    private final String height;
+    private final Number age;
+    private final String body_type;
+    private final String horoscope;
 
     /**
      * This is the constructor for the Clothing class.
@@ -29,5 +31,27 @@ public class Users implements JSONObject {
         this.age = age.intValue();
         this.body_type = body_type;
         this.horoscope = horoscope;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Users users = (Users) o;
+        return Objects.equals(user_id, users.user_id) &&
+            Objects.equals(weight, users.weight) &&
+            Objects.equals(bust_size, users.bust_size) &&
+            Objects.equals(height, users.height) && Objects.equals(age, users.age) &&
+            Objects.equals(body_type, users.body_type) &&
+            Objects.equals(horoscope, users.horoscope);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(user_id, weight, bust_size, height, age, body_type, horoscope);
     }
 }

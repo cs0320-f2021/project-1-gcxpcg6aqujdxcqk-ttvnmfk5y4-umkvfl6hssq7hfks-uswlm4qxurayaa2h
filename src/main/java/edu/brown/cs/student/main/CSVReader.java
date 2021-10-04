@@ -23,9 +23,6 @@ public class CSVReader {
    * @throws FileNotFoundException if path is null
    */
   public void readFile(String path) throws FileNotFoundException {
-    if (path.equals(null)) {
-      throw new FileNotFoundException("File not found");
-    }
 
     stars = new ArrayList<>();
     int counter = 0;
@@ -48,7 +45,7 @@ public class CSVReader {
   }
 
   /**
-   * This method prints the k closest stars given x, y, z coordinates.
+   * This method prints the k-closest stars given x, y, z coordinates.
    * @param k number of stars to find
    * @param x coordinate
    * @param y coordinate
@@ -69,9 +66,9 @@ public class CSVReader {
   }
 
   /**
-   * This method finds the k closest stars to the named star.
+   * This method finds the k-closest stars to the named star.
    * @param k stars to find
-   * @param name of star to find closest stars to
+   * @param name of star to find the closest stars to
    */
   public void nameSort(int k, String name) {
     String noQuotes = name.replaceAll("\"", "");

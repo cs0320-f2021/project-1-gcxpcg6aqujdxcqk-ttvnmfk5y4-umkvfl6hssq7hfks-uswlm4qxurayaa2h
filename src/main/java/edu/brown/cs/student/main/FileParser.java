@@ -35,8 +35,7 @@ public class FileParser {
   public String readNewLine() {
     if (bufRead != null) {
       try {
-        String ln = bufRead.readLine();
-        return ln;
+        return bufRead.readLine();
       } catch (IOException e) {
         System.out.println("ERROR: Read");
         return null;

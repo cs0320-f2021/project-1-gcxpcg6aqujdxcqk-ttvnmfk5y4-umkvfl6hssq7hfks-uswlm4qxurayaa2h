@@ -7,5 +7,8 @@ TEAM MEMBERS: Kat, Ben, Sheridan, Livia
 Clothing, Review, and Users classes are the java objects in which the Json file is stored. 
 They all implement the JSONObject interface so that Java registers that they are of the same type
 
-Recieved some help from Helen Huang -- helped me update JsonHandler.
+Received some help from Helen Huang -- helped me update JsonHandler.
 JsonHandler class reads the json files and convert them into the specific java object (so the rental clothing json file will be stored as a Clothing[] object, etc.)
+
+REPL COMMANDS: add <number> <number>; subtract <number> <number>; stars <file>; naive_neighbors <int> <x> <y> <z>, naive_neighbors <int> <name>, dataGet <users, reviews, rent>
+openJson <file> <users, reviews, clothing>
