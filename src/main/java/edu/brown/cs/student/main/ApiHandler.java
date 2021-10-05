@@ -15,10 +15,10 @@ public class ApiHandler implements ArgumentHandler {
       case "users":
         HashSet<Users> userList = new HashSet<>();
 
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < 4; i++) {
           try {
             client.makeRequest(ClientRequestGenerator.getRequest("users", "three"));
-            Users[] users = handler.convertUsers(client.getData());
+            Users[] users = handler.convertUsersFromAPI(client.getData());
             userList.addAll(Arrays.asList(users));
           } catch (Exception ignore) {
 
@@ -27,7 +27,7 @@ public class ApiHandler implements ArgumentHandler {
 
         try {
           client.makeRequest(ClientRequestGenerator.getRequest("users", "two"));
-          Users[] users2 = handler.convertUsers(client.getData());
+          Users[] users2 = handler.convertUsersFromAPI(client.getData());
           userList.addAll(Arrays.asList(users2));
         } catch (Exception ignore) {
 
@@ -42,7 +42,7 @@ public class ApiHandler implements ArgumentHandler {
 
         try {
           client.makeRequest(ClientRequestGenerator.getRequest("reviews", "two"));
-          Reviews[] reviews = handler.convertReviews(client.getData());
+          Reviews[] reviews = handler.convertReviewsFromAPI(client.getData());
           reviewList.addAll(Arrays.asList(reviews));
         } catch (Exception ignore) {
 
@@ -51,7 +51,7 @@ public class ApiHandler implements ArgumentHandler {
         for (int i = 0; i < 3; i++) {
           try {
             client.makeRequest(ClientRequestGenerator.getRequest("reviews", "three"));
-            Reviews[] reviews = handler.convertReviews(client.getData());
+            Reviews[] reviews = handler.convertReviewsFromAPI(client.getData());
             reviewList.addAll(Arrays.asList(reviews));
           } catch (Exception ignored) {
 
@@ -67,7 +67,7 @@ public class ApiHandler implements ArgumentHandler {
         for (int i = 0; i < 2; i++) {
           try {
             client.makeRequest(ClientRequestGenerator.getRequest("rent", "two"));
-            Clothing[] clothing = handler.convertClothing(client.getData());
+            Clothing[] clothing = handler.convertClothingFromAPI(client.getData());
             rent.addAll(Arrays.asList(clothing));
           } catch (Exception ignored) {
 
@@ -77,7 +77,7 @@ public class ApiHandler implements ArgumentHandler {
         for (int i = 0; i < 3; i++) {
           try {
             client.makeRequest(ClientRequestGenerator.getRequest("rent", "three"));
-            Clothing[] clothing = handler.convertClothing(client.getData());
+            Clothing[] clothing = handler.convertClothingFromAPI(client.getData());
             rent.addAll(Arrays.asList(clothing));
           } catch (Exception ignored) {
 

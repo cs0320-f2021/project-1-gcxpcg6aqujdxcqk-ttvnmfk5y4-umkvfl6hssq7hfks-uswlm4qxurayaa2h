@@ -55,6 +55,18 @@ public class JsonHandler {
         return gson.fromJson(string3, Users[].class);
     }
 
+    public Clothing[] convertClothingFromAPI(String string) {
+      return gson.fromJson(string, Clothing[].class);
+    }
+
+    public Reviews[] convertReviewsFromAPI (String string) {
+      return gson.fromJson(string, Reviews[].class);
+    }
+
+    public Users[] convertUsersFromAPI (String string) {
+      return gson.fromJson(string, Users[].class);
+    }
+
     /**
      * Method takes in the json filepath and the type of the file (ie. Clothing,
      * Review, or User) and returns the corresponding JSONObject
