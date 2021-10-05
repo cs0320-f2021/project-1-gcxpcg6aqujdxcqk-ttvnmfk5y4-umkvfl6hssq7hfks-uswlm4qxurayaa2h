@@ -38,7 +38,10 @@ public class Users implements JSONObject {
      * @return [<weight in lbs> <height in inches> <age in years>]
      */
     public int[] getCoordinates() {
-        return new int[]{Integer.parseInt(weight), Integer.parseInt(height), (int) age};
+        int w = Integer.parseInt(weight.replaceAll("lbs",""));
+        int h = Integer.parseInt(height.split("'")[0]) * 12
+            + Integer.parseInt(height.split("'")[1].replaceAll("[ \"]", ""));
+        return new int[]{w, h, age};
     }
 
     @Override

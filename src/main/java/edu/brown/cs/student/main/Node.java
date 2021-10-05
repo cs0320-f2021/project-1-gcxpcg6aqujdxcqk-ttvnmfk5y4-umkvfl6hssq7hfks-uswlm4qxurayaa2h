@@ -13,7 +13,7 @@ public class Node {
   private Node rchild;
 
   public Node(int id, int k, int[] coords) {
-    if (coordinates.length != k) {
+    if (coords.length != k) {
       ProjectErrorHandler.invalidInputError("coords must be same length as k");
     }
     nodeId = id;
@@ -45,6 +45,8 @@ public class Node {
 
   public Node getLChild() { return lchild; }
   public Node getRChild() { return rchild; }
+  public void setLChild(Node n) { lchild = n; }
+  public void setRChild(Node n) { rchild = n; }
 
   /**
    * Calculates Euclidean distance from another Node
