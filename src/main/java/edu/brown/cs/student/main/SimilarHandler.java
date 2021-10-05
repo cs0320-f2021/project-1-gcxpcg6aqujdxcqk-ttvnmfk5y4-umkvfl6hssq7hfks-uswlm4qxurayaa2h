@@ -6,6 +6,10 @@ public class SimilarHandler implements ArgumentHandler {
     try {
       Integer k = Integer.parseInt(arguments[1]);
 
+      if (k < 1) {
+        ProjectErrorHandler.invalidInputError("<k> must be greater than 0");
+      }
+
       if (arguments.length == 3) {
         ProjectErrorHandler.notImplementedError();
       } else if (arguments.length == 5) {

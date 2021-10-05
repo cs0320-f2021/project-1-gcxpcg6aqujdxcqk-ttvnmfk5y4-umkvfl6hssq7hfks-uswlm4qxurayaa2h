@@ -17,6 +17,12 @@ public class Reviews implements JSONObject {
     }
 
     /**
+     * Get Id of jsonobject
+     * @return id of review
+     */
+    public int getId() { return id; }
+
+    /**
      * Gets the three coordinates we're interested in in an array
      * @return TODO
      */

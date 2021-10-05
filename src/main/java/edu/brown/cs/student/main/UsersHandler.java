@@ -13,10 +13,16 @@ public class UsersHandler implements ArgumentHandler {
         // read in json
         Users[] usersArray = jh.convertUsers(jsonFileName);
 
+        // TODO generalize this
+        // For now if we didn't read in
+
+
         // create a new tree and add data in there
         KdTree newTree = new KdTree(3);
         newTree.loadData(usersArray);
-//        newTree.printTree();
+
+        // print tree for debugging purposes
+        // newTree.printTree();
 
         // set tree to be the global data structure
         ProjectDataContainer.setDataStructure(newTree);

@@ -34,6 +34,12 @@ public class Users implements JSONObject {
     }
 
     /**
+     * Get Id of jsonobject
+     * @return id of review
+     */
+    public int getId() { return user_id; }
+
+    /**
      * Gets the three coordinates we're interested in in an array
      * @return [<weight in lbs> <height in inches> <age in years>]
      */
