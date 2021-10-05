@@ -8,12 +8,26 @@ public class Reviews implements JSONObject {
     private final String review_date;
     private final Integer id;
 
-    private Reviews(String review_text, String review_summary,
+    public Reviews(String review_text, String review_summary,
                     String review_date, Number id){
         this.review_text = review_text;
         this.review_summary = review_summary;
         this.review_date = review_date;
         this.id = id.intValue();
+    }
+
+    /**
+     * Get Id of jsonobject
+     * @return id of review
+     */
+    public int getId() { return id; }
+
+    /**
+     * Gets the three coordinates we're interested in in an array
+     * @return TODO
+     */
+    public int[] getCoordinates() {
+        return new int[]{};
     }
 
     @Override

@@ -6,14 +6,18 @@ public class SimilarHandler implements ArgumentHandler {
     try {
       Integer k = Integer.parseInt(arguments[1]);
 
+      if (k < 1) {
+        ProjectErrorHandler.invalidInputError("<k> must be greater than 0");
+      }
+
       if (arguments.length == 3) {
-        System.out.println("Todo id");
+        ProjectErrorHandler.notImplementedError();
       } else if (arguments.length == 5) {
-        System.out.println("Todo coordinates");
+        int[] argArray = new int[] {Integer.parseInt(arguments[2]), Integer.parseInt(arguments[3]), Integer.parseInt(arguments[4])};
+        ProjectDataContainer.getDataStructure().similarToCoords(k, argArray);
       } else {
         ProjectErrorHandler.invalidInputError("similar");
       }
-
     } catch (NumberFormatException e) {
       ProjectErrorHandler.invalidInputError("similar");
     }

@@ -5,21 +5,19 @@ import java.util.Arrays;
 import static java.util.Objects.hash;
 
 public class Node {
-  private int nodeId;
-  private int dimension;
-  private int[] coordinates;
-  private Node parent;
+  private final int nodeId;
+  private final int dimension;
+  private final int[] coordinates;
   private Node lchild;
   private Node rchild;
 
   public Node(int id, int k, int[] coords) {
-    if (coordinates.length != k) {
+    if (coords.length != k) {
       ProjectErrorHandler.invalidInputError("coords must be same length as k");
     }
     nodeId = id;
     dimension = k;
     coordinates = coords;
-    parent = null;
     lchild = null;
     rchild = null;
   }
@@ -45,6 +43,9 @@ public class Node {
 
   public Node getLChild() { return lchild; }
   public Node getRChild() { return rchild; }
+  public void setLChild(Node n) { lchild = n; }
+  public void setRChild(Node n) { rchild = n; }
+  public void printNodeId() { System.out.println(nodeId); }
 
   /**
    * Calculates Euclidean distance from another Node
