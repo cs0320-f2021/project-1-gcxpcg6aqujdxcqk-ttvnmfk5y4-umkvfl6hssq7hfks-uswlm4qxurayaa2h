@@ -35,7 +35,7 @@ public class ApiHandler implements ArgumentHandler {
           }
         }
 
-        System.out.println(userList.size() + "results!");
+        System.out.println(userList.size() + " results!");
         hashSet = userList;
 
         break;
@@ -62,7 +62,7 @@ public class ApiHandler implements ArgumentHandler {
           }
         }
 
-        System.out.println(reviewList.size() + "results!");
+        System.out.println(reviewList.size() + " results!");
         hashSet = reviewList;
 
         break;
@@ -91,7 +91,7 @@ public class ApiHandler implements ArgumentHandler {
           }
         }
 
-        System.out.println(rent.size() + "results!");
+        System.out.println(rent.size() + " results!");
         hashSet = rent;
         break;
       default:

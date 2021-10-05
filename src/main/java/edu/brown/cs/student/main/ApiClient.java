@@ -24,7 +24,7 @@ public class ApiClient {
   public void makeRequest(HttpRequest req) {
     try {
       HttpResponse<String> apiResponse = client.send(req, HttpResponse.BodyHandlers.ofString());
-      System.out.println("Status " + apiResponse.statusCode());
+      // System.out.println("Status " + apiResponse.statusCode());    //uncomment for testing
       data = apiResponse.body();
 
     } catch (IOException ioe) {
