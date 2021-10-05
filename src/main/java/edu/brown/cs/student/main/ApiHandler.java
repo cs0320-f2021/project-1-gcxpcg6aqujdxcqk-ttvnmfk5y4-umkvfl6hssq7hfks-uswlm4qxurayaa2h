@@ -15,6 +15,16 @@ public class ApiHandler implements ArgumentHandler {
       case "users":
         HashSet<Users> userList = new HashSet<>();
 
+        // slower endpoint but more accurate
+        try {
+          client.makeRequest(ClientRequestGenerator.getRequest("users", "two"));
+          Users[] users2 = handler.convertUsersFromAPI(client.getData());
+          userList.addAll(Arrays.asList(users2));
+        } catch (Exception ignore) {
+
+        }
+
+        // inaccurate endpoint but very fast
         for (int i = 0; i < 4; i++) {
           try {
             client.makeRequest(ClientRequestGenerator.getRequest("users", "three"));
@@ -25,21 +35,14 @@ public class ApiHandler implements ArgumentHandler {
           }
         }
 
-        try {
-          client.makeRequest(ClientRequestGenerator.getRequest("users", "two"));
-          Users[] users2 = handler.convertUsersFromAPI(client.getData());
-          userList.addAll(Arrays.asList(users2));
-        } catch (Exception ignore) {
-
-        }
-
-        System.out.println(userList.size());
+        System.out.println(userList.size() + "results!");
         hashSet = userList;
 
         break;
       case "reviews":
         HashSet<Reviews> reviewList = new HashSet<>();
 
+        // slower endpoint but very accurate
         try {
           client.makeRequest(ClientRequestGenerator.getRequest("reviews", "two"));
           Reviews[] reviews = handler.convertReviewsFromAPI(client.getData());
@@ -48,6 +51,7 @@ public class ApiHandler implements ArgumentHandler {
 
         }
 
+        // medium speed, good accuracy
         for (int i = 0; i < 3; i++) {
           try {
             client.makeRequest(ClientRequestGenerator.getRequest("reviews", "three"));
@@ -58,12 +62,14 @@ public class ApiHandler implements ArgumentHandler {
           }
         }
 
-        System.out.println(reviewList.size());
+        System.out.println(reviewList.size() + "results!");
         hashSet = reviewList;
 
         break;
       case "rent":
         HashSet<Clothing> rent = new HashSet<>();
+
+        // medium speed good accuracy
         for (int i = 0; i < 2; i++) {
           try {
             client.makeRequest(ClientRequestGenerator.getRequest("rent", "two"));
@@ -74,6 +80,7 @@ public class ApiHandler implements ArgumentHandler {
           }
         }
 
+        // fast speed medium accuracy
         for (int i = 0; i < 3; i++) {
           try {
             client.makeRequest(ClientRequestGenerator.getRequest("rent", "three"));
@@ -84,7 +91,7 @@ public class ApiHandler implements ArgumentHandler {
           }
         }
 
-        System.out.println(rent.size());
+        System.out.println(rent.size() + "results!");
         hashSet = rent;
         break;
       default:
