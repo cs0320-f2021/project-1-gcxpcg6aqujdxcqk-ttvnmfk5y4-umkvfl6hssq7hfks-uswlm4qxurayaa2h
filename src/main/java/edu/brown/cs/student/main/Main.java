@@ -11,6 +11,9 @@ import java.util.Map;
 
 import com.google.common.collect.ImmutableMap;
 
+import edu.brown.cs.student.main.onboarding.AddHandler;
+import edu.brown.cs.student.main.onboarding.NaiveNeighborsHandler;
+import edu.brown.cs.student.main.onboarding.StarsHandler;
 import freemarker.template.Configuration;
 import joptsimple.OptionParser;
 import joptsimple.OptionSet;
@@ -21,8 +24,6 @@ import spark.Response;
 import spark.Spark;
 import spark.TemplateViewRoute;
 import spark.template.freemarker.FreeMarkerEngine;
-
-import javax.print.event.PrintJobEvent;
 
 /**
  * The Main class of our project. This is where execution begins.

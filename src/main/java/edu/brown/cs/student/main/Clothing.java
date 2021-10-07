@@ -43,9 +43,9 @@ public class Clothing implements JSONObject {
 
     /**
      * Gets the three coordinates we're interested in in an array
-     * @return TODO
+     * @return null because this is not a User
      */
-    public int[] getCoordinates() {
+    public int[] getUserCoordinates() {
         return new int[]{};
     }
 

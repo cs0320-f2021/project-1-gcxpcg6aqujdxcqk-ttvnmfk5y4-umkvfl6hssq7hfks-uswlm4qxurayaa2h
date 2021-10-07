@@ -1,5 +1,7 @@
 package edu.brown.cs.student.main;
 
+import edu.brown.cs.student.main.onboarding.MathBot;
+
 public class SubtractHandler implements ArgumentHandler {
   public void handleArg(String[] arguments) {
     MathBot mb = new MathBot();

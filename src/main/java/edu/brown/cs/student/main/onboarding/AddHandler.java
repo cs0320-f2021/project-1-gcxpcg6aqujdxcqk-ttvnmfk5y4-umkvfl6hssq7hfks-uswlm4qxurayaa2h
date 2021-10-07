@@ -1,4 +1,7 @@
-package edu.brown.cs.student.main;
+package edu.brown.cs.student.main.onboarding;
+
+import edu.brown.cs.student.main.ArgumentHandler;
+import edu.brown.cs.student.main.onboarding.MathBot;
 
 import java.io.FileNotFoundException;
 

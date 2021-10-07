@@ -1,5 +1,6 @@
 package edu.brown.cs.student.main;
 
+import edu.brown.cs.student.main.onboarding.Star;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;

@@ -1,11 +1,18 @@
 package edu.brown.cs.student.main;
 
+import org.checkerframework.checker.units.qual.A;
+
 import java.io.FileNotFoundException;
+import java.util.HashSet;
 
 public class UsersHandler implements ArgumentHandler {
   public void handleArg(String[] arguments) {
     if (arguments[1].equals("online")) {
       System.out.println("TODO online");
+      ApiHandler apih = new ApiHandler();
+      apih.handleArg(arguments);
+      HashSet<JSONObject> apihs = apih.getHashSet();
+      System.out.println(apihs);
     } else {
       String jsonFileName = arguments[1];
       JsonHandler jh = new JsonHandler();

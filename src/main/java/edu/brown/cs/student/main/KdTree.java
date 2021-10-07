@@ -174,16 +174,20 @@ public class KdTree implements ProjectDataStructure {
     //go through json/table and add each row
     for (JSONObject jo : jsonObjects) {
       // get info about this jsonobject
-      int[] joCoords = jo.getCoordinates();
-      int jk = joCoords.length;
-
-      // get the coordinates out and create a new node, and add it
-      if (jk == 0) {
-        ProjectErrorHandler.notImplementedError();
+      int[] joUserCoords = jo.getUserCoordinates(); //TODO make this code work when not User objects
+      if (joUserCoords == null) {
+        ProjectErrorHandler.invalidInputError("Malformed JSON input");
       } else {
-        Node newNode = new Node(jo.getId(), jk, joCoords);
-        this.addNode(newNode, root, 0);
+        int jk = joUserCoords.length;
+
+        // get the coordinates out and create a new node, and add it
+        if (jk == 0) {
+          ProjectErrorHandler.notImplementedError();
+        } else {
+          Node newNode = new Node(jo.getId(), jk, joUserCoords);
+          this.addNode(newNode, root, 0);
 //        System.out.println(Arrays.toString(newNode.getCoordinates()));
+      }
       }
     }
   }

@@ -43,7 +43,7 @@ public class Users implements JSONObject {
      * Gets the three coordinates we're interested in in an array
      * @return [<weight in lbs> <height in inches> <age in years>]
      */
-    public int[] getCoordinates() {
+    public int[] getUserCoordinates() {
         int w = Integer.parseInt(weight.replaceAll("lbs",""));
         int h = Integer.parseInt(height.split("'")[0]) * 12
             + Integer.parseInt(height.split("'")[1].replaceAll("[ \"]", ""));

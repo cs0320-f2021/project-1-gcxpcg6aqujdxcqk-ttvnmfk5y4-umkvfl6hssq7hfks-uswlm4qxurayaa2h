@@ -1,4 +1,4 @@
-package edu.brown.cs.student.main;
+package edu.brown.cs.student.main.onboarding;
 
 public class StarComparator implements java.util.Comparator<Star> {
   static final double SPLIT = 0.5; //ensures even split when using Math.random()

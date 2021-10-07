@@ -1,5 +1,8 @@
 package edu.brown.cs.student.main;
 
+import edu.brown.cs.student.main.onboarding.Star;
+import edu.brown.cs.student.main.onboarding.StarComparator;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
