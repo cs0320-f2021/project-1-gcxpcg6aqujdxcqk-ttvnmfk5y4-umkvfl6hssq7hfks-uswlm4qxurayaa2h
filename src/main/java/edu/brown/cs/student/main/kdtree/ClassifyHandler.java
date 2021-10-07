@@ -1,4 +1,9 @@
-package edu.brown.cs.student.main;
+package edu.brown.cs.student.main.kdtree;
+
+import edu.brown.cs.student.main.ArgumentHandler;
+import edu.brown.cs.student.main.ProjectDataContainer;
+import edu.brown.cs.student.main.ProjectDataStructure;
+import edu.brown.cs.student.main.ProjectErrorHandler;
 
 public class ClassifyHandler implements ArgumentHandler {
   public void handleArg(String[] arguments) {

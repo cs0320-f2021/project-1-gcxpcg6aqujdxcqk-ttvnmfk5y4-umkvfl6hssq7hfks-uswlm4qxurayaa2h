@@ -1,7 +1,6 @@
 package edu.brown.cs.student.main.onboarding;
 
 import edu.brown.cs.student.main.ArgumentHandler;
-import edu.brown.cs.student.main.CSVReader;
 import edu.brown.cs.student.main.ProjectErrorHandler;
 
 public class NaiveNeighborsHandler implements ArgumentHandler {

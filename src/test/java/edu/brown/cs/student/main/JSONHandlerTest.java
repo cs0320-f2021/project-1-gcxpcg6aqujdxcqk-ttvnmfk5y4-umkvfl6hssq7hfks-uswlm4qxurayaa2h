@@ -1,12 +1,12 @@
 package edu.brown.cs.student.main;
 
-import org.json.JSONArray;
+import edu.brown.cs.student.main.jsonobjects.Clothing;
+import edu.brown.cs.student.main.jsonobjects.JsonHandler;
+import edu.brown.cs.student.main.jsonobjects.Reviews;
+import edu.brown.cs.student.main.jsonobjects.Users;
 import org.junit.Test;
 
 import java.io.FileNotFoundException;
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.Arrays;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;

@@ -1,4 +1,4 @@
-package edu.brown.cs.student.main;
+package edu.brown.cs.student.main.onboarding;
 
 import edu.brown.cs.student.main.onboarding.Star;
 import edu.brown.cs.student.main.onboarding.StarComparator;

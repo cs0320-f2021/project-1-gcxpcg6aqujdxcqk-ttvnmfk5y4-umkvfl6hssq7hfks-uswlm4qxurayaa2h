@@ -1,4 +1,4 @@
-package edu.brown.cs.student.main;
+package edu.brown.cs.student.main.api;
 
 import java.io.IOException;
 import java.net.http.HttpClient;

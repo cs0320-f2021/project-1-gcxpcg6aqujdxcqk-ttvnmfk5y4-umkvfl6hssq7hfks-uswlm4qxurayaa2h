@@ -1,6 +1,10 @@
 package edu.brown.cs.student.main;
 
-import org.checkerframework.checker.units.qual.A;
+import edu.brown.cs.student.main.api.ApiHandler;
+import edu.brown.cs.student.main.jsonobjects.JSONObject;
+import edu.brown.cs.student.main.jsonobjects.JsonHandler;
+import edu.brown.cs.student.main.jsonobjects.Users;
+import edu.brown.cs.student.main.kdtree.KdTree;
 
 import java.io.FileNotFoundException;
 import java.util.HashSet;
@@ -8,11 +12,23 @@ import java.util.HashSet;
 public class UsersHandler implements ArgumentHandler {
   public void handleArg(String[] arguments) {
     if (arguments[1].equals("online")) {
-      System.out.println("TODO online");
-      ApiHandler apih = new ApiHandler();
-      apih.handleArg(arguments);
-      HashSet<JSONObject> apihs = apih.getHashSet();
-      System.out.println(apihs);
+      System.out.println("loading from api...");
+
+      // get the hashset from the api handler
+      ApiHandler apiHandler = new ApiHandler();
+      apiHandler.handleArg(new String[] {"dataGet", "users"}); // dataGet <users, reviews, rent>
+      HashSet<JSONObject> apiHashSet = apiHandler.getHashSet();
+
+      // load into a kdtree structure, hardcode k=3 because UsersHandler
+      KdTree newTree = new KdTree(3);
+      JSONObject[] apiArray = new JSONObject[]{};
+      newTree.loadData(apiHashSet.toArray(apiArray));
+
+      // print tree for debugging purposes
+      // newTree.printTree();
+
+      // set tree to be the global data structure
+      ProjectDataContainer.setDataStructure(newTree);
     } else {
       String jsonFileName = arguments[1];
       JsonHandler jh = new JsonHandler();
@@ -33,6 +49,8 @@ public class UsersHandler implements ArgumentHandler {
 
         // set tree to be the global data structure
         ProjectDataContainer.setDataStructure(newTree);
+
+        System.out.println("Data loaded!");
       } catch (FileNotFoundException e) {
         ProjectErrorHandler.invalidInputError("could not read file "+jsonFileName);
       }

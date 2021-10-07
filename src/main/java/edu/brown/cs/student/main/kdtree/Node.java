@@ -1,4 +1,6 @@
-package edu.brown.cs.student.main;
+package edu.brown.cs.student.main.kdtree;
+
+import edu.brown.cs.student.main.ProjectErrorHandler;
 
 import java.util.Arrays;
 

@@ -1,4 +1,6 @@
-package edu.brown.cs.student.main;
+package edu.brown.cs.student.main.api;
+
+import edu.brown.cs.student.main.api.ClientAuth;
 
 import java.net.URI;
 import java.net.http.HttpRequest;

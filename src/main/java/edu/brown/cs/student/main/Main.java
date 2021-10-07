@@ -11,9 +11,14 @@ import java.util.Map;
 
 import com.google.common.collect.ImmutableMap;
 
+import edu.brown.cs.student.main.api.ApiHandler;
+import edu.brown.cs.student.main.kdtree.ClassifyHandler;
+import edu.brown.cs.student.main.kdtree.KdTree;
+import edu.brown.cs.student.main.kdtree.SimilarHandler;
 import edu.brown.cs.student.main.onboarding.AddHandler;
 import edu.brown.cs.student.main.onboarding.NaiveNeighborsHandler;
 import edu.brown.cs.student.main.onboarding.StarsHandler;
+import edu.brown.cs.student.main.onboarding.SubtractHandler;
 import freemarker.template.Configuration;
 import joptsimple.OptionParser;
 import joptsimple.OptionSet;
@@ -90,13 +95,19 @@ public final class Main {
         //TODO before, Ben's code checked: `if the reader hasn't already been created and the command isn't stars, throw an error`
         if (handler == null) {
           ProjectErrorHandler.wrongArgError();
+          continue;
         }
 
         // Ask the handler whether there's the right no of arguments
         if (!handler.checkNumArgs(arguments)) {
           ProjectErrorHandler.invalidInputError(handler.getUsageString());
         } else {
-          handler.handleArg(arguments);
+          try {
+            handler.handleArg(arguments);
+          } catch (Exception e) {
+            continue;
+          }
+
         }
 
       }
