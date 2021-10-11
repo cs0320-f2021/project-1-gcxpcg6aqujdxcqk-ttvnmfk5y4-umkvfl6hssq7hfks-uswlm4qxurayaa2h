@@ -6,16 +6,20 @@ public class RecsysLoadHandler implements ArgumentHandler {
 
   @Override
   public void handleArg(String[] arguments) throws FileNotFoundException {
-    //TODO
+    if (arguments[1].equals("responses")) {
+      ProjectErrorHandler.notImplementedError();
+    } else {
+      ProjectErrorHandler.notImplementedError();
+    }
   }
 
   @Override
   public boolean checkNumArgs(String[] arguments) {
-    return false; //TODO
+    return (arguments.length == 2);
   }
 
   @Override
   public String getUsageString() {
-    return null; //TODO
+    return "usage: recsys_load responses";
   }
 }
