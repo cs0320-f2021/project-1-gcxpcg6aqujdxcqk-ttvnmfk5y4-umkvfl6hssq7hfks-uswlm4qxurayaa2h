@@ -1,11 +1,11 @@
 package edu.brown.cs.student.main;
 
 import edu.brown.cs.student.api.ApiHandler;
-import edu.brown.cs.student.jsonobjects.JSONObject;
 import edu.brown.cs.student.jsonobjects.JsonHandler;
 import edu.brown.cs.student.jsonobjects.Users;
 import edu.brown.cs.student.kdtree.KdTree;
 import edu.brown.cs.student.kdtree.KdTreeRecommender;
+import edu.brown.cs.student.recommender.Item;
 
 import java.io.FileNotFoundException;
 import java.util.HashSet;
@@ -18,11 +18,11 @@ public class UsersHandler implements ArgumentHandler {
       // get the hashset from the api handler
       ApiHandler apiHandler = new ApiHandler();
       apiHandler.handleArg(new String[] {"dataGet", "users"}); // dataGet <users, reviews, rent>
-      HashSet<JSONObject> apiHashSet = apiHandler.getHashSet();
+      HashSet<Item> apiHashSet = apiHandler.getHashSet();
 
       // load into a kdtree structure, hardcode k=3 because UsersHandler
       KdTree newTree = new KdTree(3);
-      JSONObject[] apiArray = new JSONObject[]{};
+      Item[] apiArray = new Item[]{};
       newTree.loadData(apiHashSet.toArray(apiArray));
 
       // print tree for debugging purposes

@@ -1,6 +1,7 @@
 package edu.brown.cs.student.jsonobjects;
 
 import com.google.gson.Gson;
+import edu.brown.cs.student.recommender.Item;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -73,7 +74,7 @@ public class JsonHandler {
      * @param type of the java object we want to convert our file into
      * @return JsonObject array
      */
-    public JSONObject[] storeData(String filepath, String type) throws FileNotFoundException {
+    public Item[] storeData(String filepath, String type) throws FileNotFoundException {
         switch (type) {
             case "clothing":
                 return convertClothing(filepath);

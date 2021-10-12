@@ -1,18 +1,18 @@
 package edu.brown.cs.student.api;
 
-import edu.brown.cs.student.main.ArgumentHandler;
 import edu.brown.cs.student.jsonobjects.Clothing;
-import edu.brown.cs.student.jsonobjects.JSONObject;
 import edu.brown.cs.student.jsonobjects.JsonHandler;
 import edu.brown.cs.student.jsonobjects.Reviews;
 import edu.brown.cs.student.jsonobjects.Users;
+import edu.brown.cs.student.main.ArgumentHandler;
+import edu.brown.cs.student.recommender.Item;
 
 import java.util.Arrays;
 import java.util.HashSet;
 
 public class ApiHandler implements ArgumentHandler {
 
-  private HashSet<JSONObject> hashSet;
+  private HashSet<Item> hashSet;
 
   public void handleArg(String[] arguments) {
     ApiClient client = new ApiClient();
@@ -20,7 +20,7 @@ public class ApiHandler implements ArgumentHandler {
 
     switch (arguments[1]) {
       case "users":
-        HashSet<JSONObject> userList = new HashSet<>();
+        HashSet<Item> userList = new HashSet<>();
 
         // slower endpoint but more accurate
         try {
@@ -47,7 +47,7 @@ public class ApiHandler implements ArgumentHandler {
 
         break;
       case "reviews":
-        HashSet<JSONObject> reviewList = new HashSet<>();
+        HashSet<Item> reviewList = new HashSet<>();
 
         // slower endpoint but very accurate
         try {
@@ -74,7 +74,7 @@ public class ApiHandler implements ArgumentHandler {
 
         break;
       case "rent":
-        HashSet<JSONObject> rent = new HashSet<>();
+        HashSet<Item> rent = new HashSet<>();
 
         // medium speed good accuracy
         for (int i = 0; i < 2; i++) {
@@ -115,7 +115,7 @@ public class ApiHandler implements ArgumentHandler {
     return "usage: somethingGet <what>";
   }
 
-  public HashSet<JSONObject> getHashSet() {
+  public HashSet<Item> getHashSet() {
     return hashSet;
   }
 

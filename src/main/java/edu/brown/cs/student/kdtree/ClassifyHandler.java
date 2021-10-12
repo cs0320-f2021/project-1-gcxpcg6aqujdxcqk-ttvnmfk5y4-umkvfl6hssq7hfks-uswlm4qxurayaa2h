@@ -1,15 +1,17 @@
 package edu.brown.cs.student.kdtree;
 
+import edu.brown.cs.student.jsonobjects.Users;
 import edu.brown.cs.student.main.ArgumentHandler;
 import edu.brown.cs.student.main.ProjectDataContainer;
 import edu.brown.cs.student.main.ProjectDataStructure;
 import edu.brown.cs.student.main.ProjectErrorHandler;
+import edu.brown.cs.student.recommender.Recommender;
 
 public class ClassifyHandler implements ArgumentHandler {
   public void handleArg(String[] arguments) {
     try {
       Integer k = Integer.parseInt(arguments[1]);
-      ProjectDataStructure kdTree = ProjectDataContainer.getDataStructure();
+      ProjectDataStructure kdTree = ProjectDataContainer.getDataStructure(); //TODO make it actually check that the recommender is for Users
 
       if (arguments.length == 3) {
         kdTree.classifyId(k, Integer.parseInt(arguments[2]));
