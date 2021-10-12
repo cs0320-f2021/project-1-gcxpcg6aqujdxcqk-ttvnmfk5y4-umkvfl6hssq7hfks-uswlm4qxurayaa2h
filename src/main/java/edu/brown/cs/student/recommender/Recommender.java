@@ -4,4 +4,5 @@ import java.util.List;
 
 public interface Recommender<T extends Item> {
   List<T> getTopKRecommendations(T item, int k);
+  void printRecommendations(T item, int k);
 }

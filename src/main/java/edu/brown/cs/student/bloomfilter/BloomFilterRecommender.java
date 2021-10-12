@@ -10,6 +10,11 @@ import java.util.Map;
 
 import static java.util.stream.Collectors.toList;
 
+
+/**
+ * A bloom filter recommender that uses the String attributes of the contained items (ignores numbers)
+ * @param <T>
+ */
 public class BloomFilterRecommender<T extends Item> implements Recommender<T> {
   private HashMap<String, T> items;
   private HashMap<String, BloomFilter<String>> bloomFilters;
@@ -25,7 +30,7 @@ public class BloomFilterRecommender<T extends Item> implements Recommender<T> {
 
     // find the maximum number of attributes for a given item
     for (T value : this.items.values()) {
-      int currSize = value.getVectorRepresentation().size();
+      int currSize = value.getStringVector().size();
       if (currSize > this.maxNumValues) {
         this.maxNumValues = currSize;
       }
@@ -35,7 +40,7 @@ public class BloomFilterRecommender<T extends Item> implements Recommender<T> {
     this.bloomFilters = new HashMap<>();
     for (Map.Entry<String, T> entry : this.items.entrySet()) {
       BloomFilter<String> currFilter = new BloomFilter<>(desiredFalsePositiveRate, this.maxNumValues);
-      List<String> itemVector = entry.getValue().getVectorRepresentation();
+      List<String> itemVector = entry.getValue().getStringVector();
       for (String s : itemVector) {
         currFilter.add(s);
       }
@@ -52,7 +57,7 @@ public class BloomFilterRecommender<T extends Item> implements Recommender<T> {
     }
 
     BloomFilter<String> inputFilter = new BloomFilter<>(desiredFalsePositiveRate, this.maxNumValues);
-    List<String> inputItemVector = item.getVectorRepresentation();
+    List<String> inputItemVector = item.getStringVector();
     for (String s : inputItemVector) {
       inputFilter.add(s);
     }
@@ -64,6 +69,11 @@ public class BloomFilterRecommender<T extends Item> implements Recommender<T> {
             .limit(k)
             .map(entry -> this.items.get(entry.getKey()))
             .collect(toList());
+  }
+
+  @Override
+  public void printRecommendations(T item, int k) {
+    //TODO get then print
   }
 
 

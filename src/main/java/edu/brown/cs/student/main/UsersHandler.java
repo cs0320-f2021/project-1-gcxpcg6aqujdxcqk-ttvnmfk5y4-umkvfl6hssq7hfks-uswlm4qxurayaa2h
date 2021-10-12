@@ -5,6 +5,7 @@ import edu.brown.cs.student.jsonobjects.JSONObject;
 import edu.brown.cs.student.jsonobjects.JsonHandler;
 import edu.brown.cs.student.jsonobjects.Users;
 import edu.brown.cs.student.kdtree.KdTree;
+import edu.brown.cs.student.kdtree.KdTreeRecommender;
 
 import java.io.FileNotFoundException;
 import java.util.HashSet;
@@ -33,22 +34,19 @@ public class UsersHandler implements ArgumentHandler {
       String jsonFileName = arguments[1];
       JsonHandler jh = new JsonHandler();
       try {
-        // read in json
+        // read in json TODO make it read in general items?
         Users[] usersArray = jh.convertUsers(jsonFileName);
 
-        // TODO generalize this
-        // For now if we didn't read in
-
-
         // create a new tree and add data in there
-        KdTree newTree = new KdTree(3);
+        KdTree<Users> newTree = new KdTree<Users>(3);
         newTree.loadData(usersArray);
 
         // print tree for debugging purposes
         // newTree.printTree();
 
-        // set tree to be the global data structure
-        ProjectDataContainer.setDataStructure(newTree);
+        // put tree into a recommender and set is as the global recommender
+        KdTreeRecommender<Users> newRecommender = new KdTreeRecommender<>(newTree);
+        ProjectDataContainer.setRecommender(newRecommender);
 
         System.out.println("Data loaded!");
       } catch (FileNotFoundException e) {

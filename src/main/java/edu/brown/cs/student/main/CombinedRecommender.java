@@ -44,4 +44,9 @@ public class CombinedRecommender<T extends Item> implements Recommender<T> {
     //TODO go through each of the strategies and then combine them all and return
     return null;
   }
+
+  @Override
+  public void printRecommendations(T item, int k) {
+    //TODO call getTopK and then print them
+  }
 }
