@@ -1,10 +1,10 @@
 package edu.brown.cs.student.main;
 
-import edu.brown.cs.student.main.api.ApiHandler;
-import edu.brown.cs.student.main.jsonobjects.JSONObject;
-import edu.brown.cs.student.main.jsonobjects.JsonHandler;
-import edu.brown.cs.student.main.jsonobjects.Users;
-import edu.brown.cs.student.main.kdtree.KdTree;
+import edu.brown.cs.student.api.ApiHandler;
+import edu.brown.cs.student.jsonobjects.JSONObject;
+import edu.brown.cs.student.jsonobjects.JsonHandler;
+import edu.brown.cs.student.jsonobjects.Users;
+import edu.brown.cs.student.kdtree.KdTree;
 
 import java.io.FileNotFoundException;
 import java.util.HashSet;

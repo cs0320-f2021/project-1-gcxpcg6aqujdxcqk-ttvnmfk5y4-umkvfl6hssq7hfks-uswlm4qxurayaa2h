@@ -1,7 +1,7 @@
 package edu.brown.cs.student.main;
 
-import edu.brown.cs.student.main.onboarding.Star;
-import edu.brown.cs.student.main.onboarding.StarComparator;
+import edu.brown.cs.student.onboarding.Star;
+import edu.brown.cs.student.onboarding.StarComparator;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;

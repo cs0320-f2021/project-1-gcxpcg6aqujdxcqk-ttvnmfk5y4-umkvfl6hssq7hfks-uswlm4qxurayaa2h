@@ -11,14 +11,14 @@ import java.util.Map;
 
 import com.google.common.collect.ImmutableMap;
 
-import edu.brown.cs.student.main.api.ApiHandler;
-import edu.brown.cs.student.main.kdtree.ClassifyHandler;
-import edu.brown.cs.student.main.kdtree.KdTree;
-import edu.brown.cs.student.main.kdtree.SimilarHandler;
-import edu.brown.cs.student.main.onboarding.AddHandler;
-import edu.brown.cs.student.main.onboarding.NaiveNeighborsHandler;
-import edu.brown.cs.student.main.onboarding.StarsHandler;
-import edu.brown.cs.student.main.onboarding.SubtractHandler;
+import edu.brown.cs.student.api.ApiHandler;
+import edu.brown.cs.student.kdtree.ClassifyHandler;
+import edu.brown.cs.student.kdtree.KdTree;
+import edu.brown.cs.student.kdtree.SimilarHandler;
+import edu.brown.cs.student.onboarding.AddHandler;
+import edu.brown.cs.student.onboarding.NaiveNeighborsHandler;
+import edu.brown.cs.student.onboarding.StarsHandler;
+import edu.brown.cs.student.onboarding.SubtractHandler;
 import freemarker.template.Configuration;
 import joptsimple.OptionParser;
 import joptsimple.OptionSet;

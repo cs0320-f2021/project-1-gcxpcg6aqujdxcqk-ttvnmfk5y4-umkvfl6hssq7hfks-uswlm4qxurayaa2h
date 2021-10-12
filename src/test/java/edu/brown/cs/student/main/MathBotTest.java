@@ -2,7 +2,7 @@ package edu.brown.cs.student.main;
 
 import static org.junit.Assert.assertEquals;
 
-import edu.brown.cs.student.main.onboarding.MathBot;
+import edu.brown.cs.student.onboarding.MathBot;
 import org.junit.Test;
 
 public class MathBotTest {

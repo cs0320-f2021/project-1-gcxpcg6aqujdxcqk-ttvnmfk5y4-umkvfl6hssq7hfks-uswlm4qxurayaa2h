@@ -1,9 +1,9 @@
 package edu.brown.cs.student.main;
 
-import edu.brown.cs.student.main.jsonobjects.Clothing;
-import edu.brown.cs.student.main.jsonobjects.JsonHandler;
-import edu.brown.cs.student.main.jsonobjects.Reviews;
-import edu.brown.cs.student.main.jsonobjects.Users;
+import edu.brown.cs.student.jsonobjects.Clothing;
+import edu.brown.cs.student.jsonobjects.JsonHandler;
+import edu.brown.cs.student.jsonobjects.Reviews;
+import edu.brown.cs.student.jsonobjects.Users;
 import org.junit.Test;
 
 import java.io.FileNotFoundException;
