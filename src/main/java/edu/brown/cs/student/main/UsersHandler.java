@@ -22,7 +22,7 @@ public class UsersHandler implements ArgumentHandler {
       // load into a kdtree structure, hardcode k=3 because UsersHandler
       KdTree newTree = new KdTree(3);
       JSONObject[] apiArray = new JSONObject[]{};
-      newTree.loadData(apiHashSet.toArray(apiArray));
+      newTree.loadDataAPI(apiHashSet.toArray(apiArray));
 
       // print tree for debugging purposes
       // newTree.printTree();
@@ -42,7 +42,7 @@ public class UsersHandler implements ArgumentHandler {
 
         // create a new tree and add data in there
         KdTree newTree = new KdTree(3);
-        newTree.loadData(usersArray);
+        newTree.loadDataAPI(usersArray);
 
         // print tree for debugging purposes
         // newTree.printTree();

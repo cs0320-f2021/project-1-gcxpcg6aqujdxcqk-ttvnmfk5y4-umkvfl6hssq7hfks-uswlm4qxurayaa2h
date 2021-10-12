@@ -1,6 +1,7 @@
 package edu.brown.cs.student.main.jsonobjects;
 
 import com.google.gson.Gson;
+import edu.brown.cs.student.main.Student;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -22,7 +23,7 @@ public class JsonHandler {
      * @return Clothing object in an array
      */
 
-    public String convertFilePath (String file) throws FileNotFoundException {
+    public String convertFileToString (String file) throws FileNotFoundException {
         StringBuilder returnValue = new StringBuilder();
         BufferedReader br = null;
         try {
@@ -40,18 +41,23 @@ public class JsonHandler {
     }
 
     public Clothing[] convertClothing(String file) throws FileNotFoundException {
-        String string = convertFilePath(file);
+        String string = convertFileToString(file);
         return gson.fromJson(string, Clothing[].class);
     }
 
     public Reviews[] convertReviews (String file) throws FileNotFoundException {
-        String string2 = convertFilePath(file);
+        String string2 = convertFileToString(file);
         return gson.fromJson(string2, Reviews[].class);
     }
 
     public Users[] convertUsers (String file) throws FileNotFoundException {
-        String string3 = convertFilePath(file);
+        String string3 = convertFileToString(file);
         return gson.fromJson(string3, Users[].class);
+    }
+
+    public Student[] convertStudent(String file) throws FileNotFoundException {
+        String string = convertFileToString(file);
+        return gson.fromJson(string, Student[].class);
     }
 
     public Clothing[] convertClothingFromAPI(String string) {
@@ -64,6 +70,10 @@ public class JsonHandler {
 
     public Users[] convertUsersFromAPI (String string) {
       return gson.fromJson(string, Users[].class);
+    }
+
+    public Student[] convertStudentFromAPI (String string) {
+      return gson.fromJson(string, Student[].class);
     }
 
     /**

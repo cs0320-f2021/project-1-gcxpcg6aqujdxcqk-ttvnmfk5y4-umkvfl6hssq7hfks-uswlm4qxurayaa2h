@@ -169,12 +169,17 @@ public class KdTree implements ProjectDataStructure {
     return root != null;
   }
 
+  @Override
+  public void loadDataORM() {
+
+  }
+
 
   /**
    * Loads an array of jsonObjects into this tree
    * @param jsonObjects - array of jsonobjects to load in
    */
-  public void loadData(JSONObject[] jsonObjects) {
+  public void loadDataAPI(JSONObject[] jsonObjects) {
     //go through json/table and add each row
     for (JSONObject jo : jsonObjects) {
       // get info about this jsonobject

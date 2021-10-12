@@ -2,7 +2,7 @@ package edu.brown.cs.student.main;
 
 import edu.brown.cs.student.main.jsonobjects.JSONObject;
 
-public class ResponsesRecommender implements Recommender {
+public class StudentRecommender implements Recommender {
   public void loadDataAPI(JSONObject[] jsonObjects) {
     //TODO
   }
