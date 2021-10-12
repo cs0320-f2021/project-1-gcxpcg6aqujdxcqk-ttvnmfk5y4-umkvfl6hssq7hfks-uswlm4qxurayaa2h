@@ -1,0 +1,6 @@
+INPUT
+users data/project-1/justusersSMALL.json
+similar 1 65 118 32
+OUTPUT
+721308
+END

@@ -1,0 +1,7 @@
+INPUT
+users data/project-1/justusersSMALL.json
+similar 0 135 65 30
+OUTPUT
+ERROR: invalid input for function
+<k> must be greater than 0
+END

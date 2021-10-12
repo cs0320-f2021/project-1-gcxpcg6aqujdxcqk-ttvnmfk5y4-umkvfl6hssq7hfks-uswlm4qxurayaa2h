@@ -1,0 +1,8 @@
+INPUT
+users data/project-1/justusersSMALL.json
+similar 3 135 65 30
+OUTPUT
+909926
+533900
+185966
+END
