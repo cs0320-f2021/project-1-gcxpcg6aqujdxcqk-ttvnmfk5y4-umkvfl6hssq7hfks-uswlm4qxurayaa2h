@@ -4,23 +4,28 @@ import edu.brown.cs.student.main.ProjectErrorHandler;
 import edu.brown.cs.student.recommender.Item;
 
 import java.util.Arrays;
+import java.util.List;
 
 import static java.util.Objects.hash;
 
-public class Node{
-  private final int nodeId;
+/**
+ * Node that uses the Numbers vector of an Item T as coordinates when comparing
+ * @param <T>
+ */
+public class Node<T extends Item>{
+  private final String nodeId;
   private final int dimension;
-  private final int[] coordinates;
-  private Node lchild;
-  private Node rchild;
+  private final T item;
+  private Node<T> lchild;
+  private Node<T> rchild;
 
-  public Node(int id, int k, int [] coords) {
-    if (coords.length != k) {
+  public Node(String id, int k, T it) {
+    if (it.getNumberVector().size() != k) {
       ProjectErrorHandler.invalidInputError("coords must be same length as k");
     }
     nodeId = id;
     dimension = k;
-    coordinates = coords;
+    item = it;
     lchild = null;
     rchild = null;
   }
@@ -32,16 +37,20 @@ public class Node{
     if (!(o instanceof Node))
       return false;
     Node other = (Node)o;
-    return this.nodeId == other.nodeId && Arrays.equals(this.coordinates, other.coordinates);
+    return this.nodeId.equals(other.nodeId) && this.getItem().equals(other.getItem());
   }
 
   @Override
   public final int hashCode() {
-    return hash(this.nodeId, this.coordinates);
+    return hash(this.nodeId, this.item);
   }
 
-  public int[] getCoordinates() {
-    return coordinates;
+  public T getItem() {
+    return item;
+  }
+
+  public Number[] getCoordinates() {
+    return this.getItem().getNumberVector().toArray(new Number[0]);
   }
 
   public Node getLChild() { return lchild; }
@@ -56,14 +65,14 @@ public class Node{
    * @return - null if error, otherwise the distance as Double
    * @Exception - calls invalidInputError if otherNode is not same dimension
    */
-  public Double getDistanceFrom(int[] otherCoords) {
+  public Double getDistanceFrom(Number[] otherCoords) {
     if (otherCoords.length != dimension) {
       ProjectErrorHandler.invalidInputError("otherNode must be of dimension" + dimension);
     } else {
-      int sum = 0; int thisn; int thatn;
+      int sum = 0; Number thisn; Number thatn;
       for (int i = 0; i < dimension; i++) {
-        thisn = coordinates[i]; thatn = otherCoords[i];
-        sum += (thisn * thisn) - (thatn * thatn);
+        thisn = this.getCoordinates()[i]; thatn = otherCoords[i];
+        sum += (thisn.doubleValue() * thisn.doubleValue()) - (thatn.doubleValue() * thatn.doubleValue());
       }
       return Math.sqrt(sum);
     }
@@ -78,8 +87,8 @@ public class Node{
    *           the rchild of this node (null or Node) if otherNode[dim] > thisNode[dim]
    */
   public Node compareAndGetChild(Node otherNode, int dim) {
-    int[] otherCoords = otherNode.getCoordinates();
-    if (otherCoords[dim] <= coordinates[dim]) {
+    Number[] otherCoords = otherNode.getCoordinates();
+    if (otherCoords[dim].doubleValue() <= this.getCoordinates()[dim].doubleValue()) {
       return lchild;
     } else { //if (otherCoords[dim] > coordinates[dim])
       return rchild;

@@ -3,6 +3,7 @@ package edu.brown.cs.student.kdtree;
 import edu.brown.cs.student.main.ProjectDataStructure;
 import edu.brown.cs.student.main.ProjectErrorHandler;
 import edu.brown.cs.student.jsonobjects.JSONObject;
+import edu.brown.cs.student.recommender.Item;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -10,10 +11,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class KdTree implements ProjectDataStructure {
+public class KdTree<T extends Item> implements ProjectDataStructure {
 
   private int k;
-  private Node root;
+  private Node<T> root;
 
   /**
    * Constructor for a KdTree object
@@ -42,7 +43,7 @@ public class KdTree implements ProjectDataStructure {
     if (node==null) {
       System.out.println(padding + "LEAF");
     } else {
-      System.out.print(padding + Arrays.toString(node.getCoordinates()));
+      System.out.print(padding + node.getItem().getNumberVector());
       System.out.print("L"+(null==node.getLChild()) + "R"+(null==node.getRChild()) + "\n");
       printNode(node.getLChild(), padding + "    ");
       printNode(node.getRChild(), padding + "    ");
@@ -65,7 +66,7 @@ public class KdTree implements ProjectDataStructure {
     if (root == null) {
       root = newNode;
     } else {
-      if (newNode.getCoordinates()[currentDimension] <= addTo.getCoordinates()[currentDimension]) {
+      if (newNode.getCoordinates()[currentDimension].doubleValue() <= addTo.getCoordinates()[currentDimension].doubleValue()) {
         // try to add as the left child
         if (addTo.getLChild() == null) {
           addTo.setLChild(newNode);
@@ -111,7 +112,7 @@ public class KdTree implements ProjectDataStructure {
    * @param currentLayer - current layer searching from (start at 0)
    * @return nn, HashMap of Nodes that are nearest neighbors -> their distances
    */
-  private HashMap<Node, Double> nearestNeighbors(Node current, int[] targetCoords,
+  private HashMap<Node, Double> nearestNeighbors(Node current, Number[] targetCoords,
                                                  HashMap<Node, Double> nn, int numNeighbors,
                                                  int currentLayer) {
     // Make sure that targetCoords is the right length
@@ -142,13 +143,13 @@ public class KdTree implements ProjectDataStructure {
           furthestEntry = getMaxEntry(nn);
         }
 
-        int axisDistance = targetCoords[currentDim] - current.getCoordinates()[currentDim];
+        double axisDistance = targetCoords[currentDim].doubleValue() - current.getCoordinates()[currentDim].doubleValue();
 
         if (furthestEntry.getKey().getDistanceFrom(targetCoords) > axisDistance) {
           nearestNeighbors(current.getLChild(), targetCoords, nn, numNeighbors, currentLayer + 1);
           nearestNeighbors(current.getRChild(), targetCoords, nn, numNeighbors, currentLayer + 1);
         } else {
-          if (targetCoords[currentDim] <= current.getCoordinates()[currentDim]) {
+          if (targetCoords[currentDim].doubleValue() <= current.getCoordinates()[currentDim].doubleValue()) {
             nearestNeighbors(current.getLChild(), targetCoords, nn, numNeighbors, currentLayer + 1);
           } else {
             nearestNeighbors(current.getRChild(), targetCoords, nn, numNeighbors, currentLayer + 1);
@@ -172,23 +173,23 @@ public class KdTree implements ProjectDataStructure {
 
   /**
    * Loads an array of jsonObjects into this tree
-   * @param jsonObjects - array of jsonobjects to load in
+   * @param itemsArray - array of jsonobjects to load in
    */
-  public void loadData(JSONObject[] jsonObjects) {
+  public void loadData(T[] itemsArray) {
     //go through json/table and add each row
-    for (JSONObject jo : jsonObjects) {
+    for (T it : itemsArray) {
       // get info about this jsonobject
-      int[] joUserCoords = jo.getUserCoordinates(); //TODO make this code work when not User objects
-      if (joUserCoords == null) {
+      List<Number> itVectorRepresentation = it.getNumberVector();
+      if (itVectorRepresentation == null) {
         ProjectErrorHandler.invalidInputError("Malformed JSON input");
       } else {
-        int jk = joUserCoords.length;
+        int jk = itVectorRepresentation.size();
 
         // get the coordinates out and create a new node, and add it
         if (jk == 0) {
           ProjectErrorHandler.notImplementedError();
         } else {
-          Node newNode = new Node(jo.getId(), jk, joUserCoords);
+          Node<T> newNode = new Node<T>(it.getId(), jk, it);
           this.addNode(newNode, root, 0);
 //        System.out.println(Arrays.toString(newNode.getCoordinates()));
       }
@@ -205,7 +206,7 @@ public class KdTree implements ProjectDataStructure {
 
   //the main functionality is here
   // targetCoords instead of (int weight, int height, int age)
-  public void similarToCoords(int numNeighbors, int[] targetCoords) {
+  public void similarToCoords(int numNeighbors, Number[] targetCoords) {
     // Call kdtree search and print out the list
     HashMap<Node, Double> nn = new HashMap<>();
     nearestNeighbors(root, targetCoords, nn, numNeighbors, 0);

@@ -17,7 +17,7 @@ public class SimilarHandler implements ArgumentHandler {
       if (arguments.length == 3) {
         ProjectErrorHandler.notImplementedError();
       } else if (arguments.length == 5) {
-        int[] argArray = new int[] {Integer.parseInt(arguments[2]), Integer.parseInt(arguments[3]), Integer.parseInt(arguments[4])};
+        Number[] argArray = new Number[] {Integer.parseInt(arguments[2]), Integer.parseInt(arguments[3]), Integer.parseInt(arguments[4])};
         ProjectDataContainer.getDataStructure().similarToCoords(k, argArray);
       } else {
         ProjectErrorHandler.invalidInputError("similar");

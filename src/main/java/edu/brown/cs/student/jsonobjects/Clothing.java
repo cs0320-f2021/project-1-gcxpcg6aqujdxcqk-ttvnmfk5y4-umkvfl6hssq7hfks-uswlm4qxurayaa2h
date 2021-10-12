@@ -1,8 +1,12 @@
 package edu.brown.cs.student.jsonobjects;
 
+import edu.brown.cs.student.recommender.Item;
+
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
-public class Clothing implements JSONObject {
+public class Clothing implements Item {
     private final String fit;
     private final int user_id;
     private final int item_id;
@@ -36,18 +40,37 @@ public class Clothing implements JSONObject {
     }
 
     /**
+     * Returns fields of interest that are represented as Strings
+     */
+    @Override
+    public List<String> getStringVector() {
+        List<String> l = new ArrayList<>();
+        l.add(fit);
+        l.add(rating);
+        l.add(rented_for);
+        l.add(category);
+        return l;
+    }
+
+    /**
+     * Returns fields of interest that are represented as Numbers
+     */
+    @Override
+    public List<Number> getNumberVector() {
+        List<Number> l = new ArrayList<>();
+        l.add(user_id);
+        l.add(item_id);
+        l.add(size);
+        l.add(id);
+        return l;
+    }
+
+    /**
      * Get Id of jsonobject
      * @return id of review
      */
-    public int getId() { return id; }
+    public String getId() { return Integer.toString(id); }
 
-    /**
-     * Gets the three coordinates we're interested in in an array
-     * @return null because this is not a User
-     */
-    public int[] getUserCoordinates() {
-        return new int[]{};
-    }
 
     @Override
     public boolean equals(Object o) {
