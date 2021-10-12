@@ -6,6 +6,7 @@ import static org.junit.Assert.assertEquals;
 import edu.brown.cs.student.main.kdtree.Node;
 import org.junit.Test;
 
+import java.util.Arrays;
 import java.util.stream.IntStream;
 
 public class NodeTest {
@@ -55,7 +56,8 @@ public class NodeTest {
         // regular 1D values
         Node testreg1Da = new Node(1, 1, new int[]{29});
         Node testreg1Db = new Node(1, 1, new int[]{34});
-//        assertEquals(testreg1Da.getDistanceFrom(testreg1Db.getCoordinates()), 5.0);
+        System.out.println("ASDFASDFASD"+ Arrays.toString(testreg1Db.getCoordinates()));
+        assertEquals((Object)testreg1Da.getDistanceFrom(testreg1Db.getCoordinates()), (Object)5.0);
 
 
         //all null 1D values

@@ -58,15 +58,18 @@ public class Node {
   public Double getDistanceFrom(int[] otherCoords) {
     if (otherCoords.length != dimension) {
       ProjectErrorHandler.invalidInputError("otherNode must be of dimension" + dimension);
+      return null;
     } else {
-      int sum = 0; int thisn; int thatn;
+      int sum = 0;
+      int thisn;
+      int thatn;
       for (int i = 0; i < dimension; i++) {
-        thisn = coordinates[i]; thatn = otherCoords[i];
-        sum += (thisn * thisn) - (thatn * thatn);
+        thisn = coordinates[i];
+        thatn = otherCoords[i];
+        sum += Math.pow((thisn - thatn), 2);
       }
       return Math.sqrt(sum);
     }
-    return null;
   }
 
   /**
