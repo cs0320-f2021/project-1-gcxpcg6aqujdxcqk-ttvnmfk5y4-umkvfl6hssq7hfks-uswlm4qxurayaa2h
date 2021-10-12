@@ -2,11 +2,11 @@ package edu.brown.cs.student.main;
 
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 
 import edu.brown.cs.student.main.kdtree.Node;
 import org.junit.Test;
 
-import java.util.Arrays;
 import java.util.stream.IntStream;
 
 public class NodeTest {
@@ -56,11 +56,12 @@ public class NodeTest {
         // regular 1D values
         Node testreg1Da = new Node(1, 1, new int[]{29});
         Node testreg1Db = new Node(1, 1, new int[]{34});
-        System.out.println("ASDFASDFASD"+ Arrays.toString(testreg1Db.getCoordinates()));
-        assertEquals((Object)testreg1Da.getDistanceFrom(testreg1Db.getCoordinates()), (Object)5.0);
+        assertEquals((Object)5.0, testreg1Da.getDistanceFrom(testreg1Db.getCoordinates()));
 
-
-        //all null 1D values
+        // all null 1D values
+        Node testreg1Dc = new Node(1, 1, new int[]{});
+        Node testreg1Dd = new Node(1, 1, new int[]{});
+        assertNull(testreg1Dc.getDistanceFrom(testreg1Dd.getCoordinates()));
 
         // negative 1D values
 
