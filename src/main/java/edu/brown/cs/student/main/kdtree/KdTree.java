@@ -218,9 +218,11 @@ public class KdTree implements ProjectDataStructure {
 
     // make this more generic?
     List<Map.Entry<Node, Double>> nnlist = new ArrayList<>(nn.entrySet());
+
     nnlist.sort(Map.Entry.comparingByValue());
     for (Map.Entry<Node, Double> entry : nnlist) {
       entry.getKey().printNodeId();
+      System.out.println(entry.getValue()); //TODO CURRENTLY DEBUGGING
     }
   }
 

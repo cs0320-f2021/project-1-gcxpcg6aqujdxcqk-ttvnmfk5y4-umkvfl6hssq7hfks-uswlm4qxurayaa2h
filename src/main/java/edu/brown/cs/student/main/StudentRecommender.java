@@ -3,6 +3,28 @@ package edu.brown.cs.student.main;
 import edu.brown.cs.student.main.jsonobjects.JSONObject;
 
 public class StudentRecommender implements Recommender {
+  private Student[] studentsArray;
+
+  /**
+   * Function that combines API and database data
+   * It first loads in data from the online API into an array of Students i.e. Students[]
+   * Then, for each Student, it looks up that student in the Database, and fills in fields in Student object
+   * Prints an error to the REPL if data cannot be found for that Student from the API
+   */
+  public void loadData() {
+    //set up Database
+    studentsArray = doThatPostRequest();
+    for (Student s : studentsArray) {
+      int sid = s.getId();
+
+      //look up the student in Database by id
+      //get relevant information and fill in student fields with a setter
+      //print an error if the student is not found
+    }
+
+  }
+
+
   public void loadDataAPI(JSONObject[] jsonObjects) {
     //TODO load in the api data
   }
