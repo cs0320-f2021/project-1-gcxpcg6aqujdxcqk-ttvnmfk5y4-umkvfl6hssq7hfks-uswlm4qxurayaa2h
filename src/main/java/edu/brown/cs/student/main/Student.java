@@ -111,6 +111,45 @@ public class Student implements JSONObject{
     return new int[]{};
   }
 
+
+  /**
+   * Takes in another student that has the same
+   */
+  public void mergeStudentIntoThis(Student otherStudent) {
+    if (otherStudent.getId() != this.id) {
+      ProjectErrorHandler.invalidInputError("mergeStudents can only merge Students with the same id");
+    } else {
+      //TODO IMPLEMENT THIS!
+//      otherStudent
+
+//      this.name = name;
+//      this.meeting = meeting;
+//      this.grade = grade;
+//      this.years_of_experience = years_of_experience;
+//      this.horoscope = horoscope;
+//      this.meeting_times = meeting_times;
+//      this.preferred_language = preferred_language;
+//      this.marginalized_groups = marginalized_groups;
+//      this.prefer_group = prefer_group;
+//      this.interestID = interestID;
+//      this.interest = interest;
+//      this.traitIDPositive = traitIDPositive;
+//      this.traitPositive = traitPositive;
+//      this.traitIDNegative = traitIDNegative;
+//      this.traitNegative = traitNegative;
+//      this.skillsID = skillsID;
+//      this.skillsName = skillsName;
+//      this.commenting = commenting;
+//      this.testing = testing;
+//      this.oop = oop;
+//      this.algorithms = algorithms;
+//      this.teamwork = teamwork;
+//      this.frontend = frontend;
+    }
+
+  }
+
+
   public List<Object> getDataAPI() {
     List<Object> list = new ArrayList<Object>();
     list.add(this.id);
