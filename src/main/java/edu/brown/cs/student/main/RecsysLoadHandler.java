@@ -10,11 +10,12 @@ import java.util.Arrays;
 import java.util.HashSet;
 
 public class RecsysLoadHandler implements ArgumentHandler {
-  ApiClient client = new ApiClient();
-  JsonHandler handler = new JsonHandler();
 
   @Override
   public void handleArg(String[] arguments) throws FileNotFoundException {
+    ApiClient client = new ApiClient();
+    JsonHandler handler = new JsonHandler();
+
     //TODO
     //first get the data from the API and create array of Student objects
     //second get the data from ORM and fill in the null fields in that Student array
@@ -31,10 +32,8 @@ public class RecsysLoadHandler implements ArgumentHandler {
 
       }
     }
-    System.out.println(client.getData());
 
     System.out.println(studentList.size() + " results!");
-
 
     //1. Use APIHandler and JsonHandler to fill Students[] with Student Objects. Some fields for each student object will be null at tis point.
     //2. Go through hAPI and then loop up student ID in database (SQL)
@@ -48,6 +47,6 @@ public class RecsysLoadHandler implements ArgumentHandler {
 
   @Override
   public String getUsageString() {
-    return "usage: student"; //TODO
+    return "usage: student";
   }
 }
