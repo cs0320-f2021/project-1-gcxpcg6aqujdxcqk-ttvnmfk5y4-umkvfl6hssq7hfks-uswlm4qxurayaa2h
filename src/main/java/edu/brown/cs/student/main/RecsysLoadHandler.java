@@ -4,7 +4,6 @@ import edu.brown.cs.student.main.api.ApiClient;
 import edu.brown.cs.student.main.api.ClientRequestGenerator;
 import edu.brown.cs.student.main.jsonobjects.JSONObject;
 import edu.brown.cs.student.main.jsonobjects.JsonHandler;
-import edu.brown.cs.student.main.jsonobjects.Users;
 
 import java.io.FileNotFoundException;
 import java.util.Arrays;
@@ -23,27 +22,32 @@ public class RecsysLoadHandler implements ArgumentHandler {
 
     HashSet<JSONObject> studentList = new HashSet<>();
 
-    // slower endpoint but more accurate
-    try {
+    for (int i = 0; i < 3; i++) {
+      try {
       client.makeRequest(ClientRequestGenerator.postRequest());
       Student[] student = handler.convertStudentFromAPI(client.getData());
       studentList.addAll(Arrays.asList(student));
-    } catch (Exception ignore) {
+      } catch (Exception ignore) {
 
+      }
     }
+    System.out.println(client.getData());
 
-    //1. Use APIHandler and JsonHandler to fill Students[] with Student Objects. Some of the fields for each student object will be null at tis point.
+    System.out.println(studentList.size() + " results!");
+
+
+    //1. Use APIHandler and JsonHandler to fill Students[] with Student Objects. Some fields for each student object will be null at tis point.
     //2. Go through hAPI and then loop up student ID in database (SQL)
     //3. Then create some databaseHandler to take database data and use ID’s to fill in the empty field (time wise should be fine since the ID is our primary key in the SQL file)
   }
 
   @Override
   public boolean checkNumArgs(String[] arguments) {
-    return false; //TODO
+    return arguments.length == 1;
   }
 
   @Override
   public String getUsageString() {
-    return null; //TODO
+    return "usage: student"; //TODO
   }
 }

@@ -83,7 +83,9 @@ public final class Main {
       argHashMap.put("classify", new ClassifyHandler());
       argHashMap.put("dataGet", new ApiHandler()); //added repl commands for api
       argHashMap.put("openJson", new ApiHandler()); //added repl commands for json reader
-      
+      argHashMap.put("student", new RecsysLoadHandler()); //added repl commands for json reader
+
+
       ProjectDataContainer.setDataStructure(new KdTree(3));
 
       while ((input = br.readLine()) != null) {
