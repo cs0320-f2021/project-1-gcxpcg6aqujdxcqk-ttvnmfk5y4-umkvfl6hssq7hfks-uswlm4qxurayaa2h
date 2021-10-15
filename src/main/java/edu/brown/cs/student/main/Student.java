@@ -69,6 +69,7 @@ public class Student implements JSONObject{
                   String traitPositive, int traitIDNegative, String traitNegative, int skillsID,
                   String skillsName, int commenting, int testing, int oop, int algorithms,
                   int teamwork, int frontend) {
+    //api data
     this.id = id;
     this.name = name;
     this.meeting = meeting;
@@ -79,12 +80,8 @@ public class Student implements JSONObject{
     this.preferred_language = preferred_language;
     this.marginalized_groups = marginalized_groups;
     this.prefer_group = prefer_group;
-    this.interestID = interestID;
-    this.interest = interest;
-    this.traitIDPositive = traitIDPositive;
-    this.traitPositive = traitPositive;
-    this.traitIDNegative = traitIDNegative;
-    this.traitNegative = traitNegative;
+
+    //skills table
     this.skillsID = skillsID;
     this.skillsName = skillsName;
     this.commenting = commenting;

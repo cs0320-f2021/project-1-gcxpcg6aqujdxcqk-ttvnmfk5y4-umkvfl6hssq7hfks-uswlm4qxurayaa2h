@@ -13,6 +13,7 @@ public class StudentRecommender implements Recommender {
   private Student[] studentsArray;
   private Database db = null;
 
+
   /**
    * Function that combines API and database data
    * It first loads in data from the online API into an array of Students i.e. Students[]
@@ -91,9 +92,6 @@ public class StudentRecommender implements Recommender {
         }
       }
     }
-
-
-
   }
 
   @Override
