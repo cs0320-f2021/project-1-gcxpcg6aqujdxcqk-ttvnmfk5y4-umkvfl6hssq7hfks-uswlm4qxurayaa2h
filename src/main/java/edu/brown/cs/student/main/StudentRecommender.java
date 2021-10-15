@@ -1,14 +1,99 @@
 package edu.brown.cs.student.main;
 
 import edu.brown.cs.student.main.jsonobjects.JSONObject;
+import edu.brown.cs.student.orm.Database;
+
+import java.lang.reflect.InvocationTargetException;
+import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class StudentRecommender implements Recommender {
-  public void loadDataAPI(JSONObject[] jsonObjects) {
-    //TODO load in the api data
-  }
+  private Student[] studentsArray;
+  private Database db = null;
 
-  public void loadDataORM() {
-    //TODO go through the api data and look up each id in the database and fill it in
+  /**
+   * Function that combines API and database data
+   * It first loads in data from the online API into an array of Students i.e. Students[]
+   * Then, for each Student, it looks up that student in the Database, and fills in fields in Student object
+   * Prints an error to the REPL if data cannot be found for that Student from the API
+   */
+  public void loadData(String dbString) {
+    // get students array from API
+    studentsArray = doThatPostRequest();
+
+    // set up Database
+    try {
+      db = new Database(dbString);
+    } catch (ClassNotFoundException ce) {
+      ProjectErrorHandler.invalidInputError("unable to create database using class org.sqlite.JDBC");
+    } catch (SQLException se) {
+      ProjectErrorHandler.invalidInputError("error when connecting to sql database");
+    }
+
+    // if database is not null...
+    if (db != null) {
+      // go through API students and fill in skills from Database
+      for (Student s : studentsArray) {
+        int sid = s.getId();
+        Map<String, String> qParams = new HashMap<>();
+        qParams.put("id", String.valueOf(sid));
+        try {
+          // select from skills table and merge with this student
+          List<Student> selectResult = db.select(Student.class, "skills", qParams);
+          assert (selectResult.size() == 1);
+          Student dbStudent = selectResult.get(0);
+          s.mergeStudentIntoThis(dbStudent);
+        } catch (AssertionError e) {
+          System.out.println("Student " + sid + " not found in skills database");
+        } catch (Exception e) {
+          ProjectErrorHandler.invalidInputError("Error selecting skills from database");
+        }
+
+        // select from positive table and merge with this student
+        try {
+          List<Student> selectResult = db.select(Student.class, "positive", qParams);
+          assert (selectResult.size() >= 1);
+          for (Student dbStudent : selectResult) {
+            s.mergeStudentIntoThis(dbStudent);
+          }
+        } catch (AssertionError e) {
+          System.out.println("Student " + sid + " not found in positive database");
+        } catch (Exception e) {
+          ProjectErrorHandler.invalidInputError("Error selecting positive traits from database");
+        }
+
+        // select from negative table and merge with this student
+        try {
+          List<Student> selectResult = db.select(Student.class, "negative", qParams);
+          assert (selectResult.size() >= 1);
+          for (Student dbStudent : selectResult) {
+            s.mergeStudentIntoThis(dbStudent);
+          }
+        } catch (AssertionError e) {
+          System.out.println("Student " + sid + " not found in negative database");
+        } catch (Exception e) {
+          ProjectErrorHandler.invalidInputError("Error selecting negative traits from database");
+        }
+
+        // select from interests table and merge with this student
+        try {
+          List<Student> selectResult = db.select(Student.class, "interests", qParams);
+          assert (selectResult.size() >= 1);
+          for (Student dbStudent : selectResult) {
+            s.mergeStudentIntoThis(dbStudent);
+          }
+        } catch (AssertionError e) {
+          System.out.println("Student " + sid + " not found in interests database");
+        } catch (Exception e) {
+          ProjectErrorHandler.invalidInputError("Error selecting interests traits from database");
+        }
+      }
+    }
+
+
+
   }
 
   @Override
