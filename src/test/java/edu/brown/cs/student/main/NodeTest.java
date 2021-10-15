@@ -99,31 +99,26 @@ public class NodeTest {
     public void testCompareAndGetChild(){
         //greater than 1D
         Node testreg1D = new Node(1, 1, new int[]{64});
+        Node testLChild1D = new Node(1, 1, new int[]{35});
+        Node testRChild1D = new Node(1, 1, new int[]{72});
+        testreg1D.setLChild(testLChild1D);
+        testreg1D.setRChild(testRChild1D);
 
+        assertEquals(true, testreg1D.getLChild().getCoordinates()[0] < testreg1D.getRChild().getCoordinates()[0]);
+        assertEquals(false, testreg1D.getRChild().getCoordinates()[0] < testreg1D.getCoordinates()[0]);
 
+        Node testLLChild2D = new Node(1, 1, new int[]{35});
+        testLChild1D.setLChild(testLLChild2D);
+
+        assertEquals(true, testLChild1D.getLChild().getCoordinates()[0] == testLChild1D.getCoordinates()[0]);
         // smaller than 1D
+        Node testLRChild2D = new Node(1, 1, new int[]{42});
+        testLChild1D.setRChild(testLRChild2D);
+        Node testLRRChild3D = new Node(1, 1, new int[]{44});
+        testLRChild2D.setRChild(testLRRChild3D);
 
-        //same value 1D
+        assertEquals(true, testLRChild2D.getRChild().getCoordinates()[0] < testreg1D.getRChild().getCoordinates()[0]);
 
-        //greater than 2D
-
-        //x and y confusion
-
-        //smaller than 2D
-
-        // x and y confusion
-
-        //same value 2D
-
-        //smaller than 3D
-
-        //x and y confusion
-
-        //greater than 3D
-
-        //x and y confusion
-
-        //same value 3D
 
 
     }
