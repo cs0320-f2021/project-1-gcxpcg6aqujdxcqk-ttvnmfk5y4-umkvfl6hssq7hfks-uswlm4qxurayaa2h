@@ -11,7 +11,7 @@ public class Student implements JSONObject{
   private final String name;
   private final String meeting;
   private final String grade;
-  private final int years_of_experience;
+  private final double years_of_experience;
   private final String horoscope;
   private final String meeting_times;
   private final String preferred_language;
@@ -63,7 +63,7 @@ public class Student implements JSONObject{
    * @param frontend
    */
   public Student(int id, String name, String meeting, String grade,
-                  int years_of_experience, String horoscope, String meeting_times,
+                  double years_of_experience, String horoscope, String meeting_times,
                   String preferred_language, String marginalized_groups, String prefer_group,
                   int interestID, int interest, int traitIDPositive,
                   String traitPositive, int traitIDNegative, String traitNegative, int skillsID,
