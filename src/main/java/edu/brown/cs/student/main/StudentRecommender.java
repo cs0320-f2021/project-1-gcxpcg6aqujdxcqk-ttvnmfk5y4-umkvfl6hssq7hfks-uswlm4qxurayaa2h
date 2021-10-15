@@ -21,7 +21,7 @@ public class StudentRecommender implements Recommender {
    */
   public void loadData(String dbString) {
     // get students array from API
-    studentsArray = doThatPostRequest();
+    //studentsArray = doThatPostRequest();
 
     // set up Database
     try {
