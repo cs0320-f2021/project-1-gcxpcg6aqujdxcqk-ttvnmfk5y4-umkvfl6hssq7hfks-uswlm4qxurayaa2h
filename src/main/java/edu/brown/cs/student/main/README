@@ -7,8 +7,40 @@ TEAM MEMBERS: Kat, Ben, Sheridan, Livia
 Clothing, Review, and Users classes are the java objects in which the Json file is stored. 
 They all implement the JSONObject interface so that Java registers that they are of the same type
 
-Received some help from Helen Huang -- helped me update JsonHandler.
+Received some help from Helen Huang -- helped update JsonHandler.
 JsonHandler class reads the json files and convert them into the specific java object (so the rental clothing json file will be stored as a Clothing[] object, etc.)
 
-REPL COMMANDS: add <number> <number>; subtract <number> <number>; stars <file>; naive_neighbors <int> <x> <y> <z>, naive_neighbors <int> <name>, dataGet <users, reviews, rent>
-openJson <file> <users, reviews, clothing>
+REPL COMMANDS:
+add <number> <number>: adds two numbers together
+subtract <number> <number>: substracts one number from the other
+stars <file>: FILL IN
+naive_neighbors <int> <x> <y> <z>: FILL IN
+naive_neighbors <int> <name>: FILL IN
+dataGet <users, reviews, rent>: FILL IN
+openJson <file> <users, reviews, clothing>: FILL IN
+
+
+Questions:
+
+ 1. From this angle, how might your matchmaker’s results end up treating
+ minorities differently than their more privileged counterparts? What larger-reaching
+ impacts might this have (e.g. are biases reiterated? Do members of minority
+ groups receive as well-suited matches as their peers might? etc.).
+
+As the study mentioned, marginalized communities are less likely to
+advocate for themselves or accurately realize/determine their own skill level.
+Therefore, biases that assume these communities are underperformers or less
+talented relative to their non-marginalized peers could very easily be reinforced
+by marginalized students' underestimating their own abilities. I'm not entirely
+sure how people's rating of themselves is going to be factored into creating groups.
+However, if a student of a marginalized community who has rated their abilities
+a low value gets paired with a non-marginalized student who rated their abilities
+with a high value, the non-marginalized student might already have assumptions
+that they are the "better" coder and that the other student is "less than." This
+type of relationship will then automatically reinforce the marginalized student's
+perception or fear that they aren't as good at coding as their counterpart.
+
+
+
+
+//talk about why we didn’t implement classify, what we could do for that
