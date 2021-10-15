@@ -1,17 +1,22 @@
 package edu.brown.cs.student.main;
 
+import edu.brown.cs.student.main.api.ApiClient;
+import edu.brown.cs.student.main.api.ClientRequestGenerator;
 import edu.brown.cs.student.main.jsonobjects.JSONObject;
+import edu.brown.cs.student.main.jsonobjects.JsonHandler;
 import edu.brown.cs.student.orm.Database;
 
 import java.lang.reflect.InvocationTargetException;
 import java.sql.SQLException;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 
 public class StudentRecommender implements Recommender {
-  private Student[] studentsArray;
-  private Database db = null;
+  private Student[] studentsArray = new Student[]{};
+  private final Database db = null;
 
   /**
    * Function that combines API and database data
@@ -19,9 +24,10 @@ public class StudentRecommender implements Recommender {
    * Then, for each Student, it looks up that student in the Database, and fills in fields in Student object
    * Prints an error to the REPL if data cannot be found for that Student from the API
    */
-  public void loadData(String dbString) {
-    // get students array from API
-    studentsArray = doThatPostRequest();
+  public StudentRecommender(HashSet<Student> studentHashSet, String dbString) {
+    // API was already called in RecsysLoadHandler, so now we just load that into Students[] array
+    studentHashSet.toArray(studentsArray);
+
 
     // set up Database
     try {

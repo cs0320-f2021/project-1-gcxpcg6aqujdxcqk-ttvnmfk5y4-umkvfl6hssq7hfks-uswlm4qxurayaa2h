@@ -16,13 +16,8 @@ public class RecsysLoadHandler implements ArgumentHandler {
     ApiClient client = new ApiClient();
     JsonHandler handler = new JsonHandler();
 
-    //TODO
     //first get the data from the API and create array of Student objects
-    //second get the data from ORM and fill in the null fields in that Student array
-    //load into our StudentRecommender
-
-    HashSet<JSONObject> studentList = new HashSet<>();
-
+    HashSet<Student> studentList = new HashSet<>();
     for (int i = 0; i < 3; i++) {
       try {
       client.makeRequest(ClientRequestGenerator.postRequest());
@@ -32,13 +27,11 @@ public class RecsysLoadHandler implements ArgumentHandler {
 
       }
     }
-
     System.out.println(studentList.size() + " results!");
 
-    //1. Use APIHandler and JsonHandler to fill Students[] with Student Objects. Some fields for each student object will be null at tis point.
-    //2. Go through hAPI and then loop up student ID in database (SQL)
-    //3. Then create some databaseHandler to take database data and use ID’s to fill in the empty field (time wise should be fine since the ID is our primary key in the SQL file)
-    // make a new StudentRecommender and then loadData()
+    //TODO make sure filename is right
+    StudentRecommender sr = new StudentRecommender(studentList, "integration.sqlite3");
+    ProjectDataContainer.setProjectRecommender(sr);
   }
 
   @Override
