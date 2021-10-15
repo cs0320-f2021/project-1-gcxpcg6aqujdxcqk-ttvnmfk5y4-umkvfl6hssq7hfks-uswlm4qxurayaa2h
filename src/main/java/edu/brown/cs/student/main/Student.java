@@ -18,14 +18,6 @@ public class Student implements JSONObject{
   private final String marginalized_groups;
   private final String prefer_group;
 
-  private final int interestID;
-  private final int interest;
-
-  private final int traitIDPositive;
-  private final String traitPositive;
-
-  private final int traitIDNegative;
-  private final String traitNegative;
 
   private final int skillsID;
   private final String skillsName;
@@ -79,12 +71,6 @@ public class Student implements JSONObject{
     this.preferred_language = preferred_language;
     this.marginalized_groups = marginalized_groups;
     this.prefer_group = prefer_group;
-    this.interestID = interestID;
-    this.interest = interest;
-    this.traitIDPositive = traitIDPositive;
-    this.traitPositive = traitPositive;
-    this.traitIDNegative = traitIDNegative;
-    this.traitNegative = traitNegative;
     this.skillsID = skillsID;
     this.skillsName = skillsName;
     this.commenting = commenting;
@@ -146,7 +132,6 @@ public class Student implements JSONObject{
 //      this.teamwork = teamwork;
 //      this.frontend = frontend;
     }
-
   }
 
 
@@ -168,12 +153,6 @@ public class Student implements JSONObject{
 
   public List<Object> getDataORM() {
     List<Object> list = new ArrayList<Object>();
-    list.add(this.interestID);
-    list.add(this.interest);
-    list.add(this.traitIDPositive);
-    list.add(this.traitPositive);
-    list.add(this.traitIDNegative);
-    list.add(this.traitNegative);
     list.add(this.skillsID);
     list.add(this.skillsName);
     list.add(this.commenting);
@@ -196,8 +175,6 @@ public class Student implements JSONObject{
     }
     Student student = (Student) o;
     return id == student.id && years_of_experience == student.years_of_experience &&
-        interestID == student.interestID && interest == student.interest &&
-        traitIDPositive == student.traitIDPositive && traitIDNegative == student.traitIDNegative &&
         skillsID == student.skillsID && commenting == student.commenting &&
         testing == student.testing && oop == student.oop && algorithms == student.algorithms &&
         teamwork == student.teamwork && frontend == student.frontend &&
@@ -209,17 +186,13 @@ public class Student implements JSONObject{
         Objects.equals(preferred_language, student.preferred_language) &&
         Objects.equals(marginalized_groups, student.marginalized_groups) &&
         Objects.equals(prefer_group, student.prefer_group) &&
-        Objects.equals(traitPositive, student.traitPositive) &&
-        Objects.equals(traitNegative, student.traitNegative) &&
         Objects.equals(skillsName, student.skillsName);
   }
 
   @Override
   public int hashCode() {
     return Objects.hash(id, name, meeting, grade, years_of_experience, horoscope, meeting_times,
-        preferred_language, marginalized_groups, prefer_group, interestID, interest,
-        traitIDPositive,
-        traitPositive, traitIDNegative, traitNegative, skillsID, skillsName, commenting, testing,
+        preferred_language, marginalized_groups, prefer_group, skillsID, skillsName, commenting, testing,
         oop,
         algorithms, teamwork, frontend);
   }

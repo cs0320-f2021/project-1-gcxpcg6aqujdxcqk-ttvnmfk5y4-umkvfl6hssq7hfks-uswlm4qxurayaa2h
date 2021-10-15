@@ -55,45 +55,6 @@ public class StudentRecommender implements Recommender {
         } catch (Exception e) {
           ProjectErrorHandler.invalidInputError("Error selecting skills from database");
         }
-
-        // select from positive table and merge with this student
-        try {
-          List<Student> selectResult = db.select(Student.class, "positive", qParams);
-          assert (selectResult.size() >= 1);
-          for (Student dbStudent : selectResult) {
-            s.mergeStudentIntoThis(dbStudent);
-          }
-        } catch (AssertionError e) {
-          System.out.println("Student " + sid + " not found in positive database");
-        } catch (Exception e) {
-          ProjectErrorHandler.invalidInputError("Error selecting positive traits from database");
-        }
-
-        // select from negative table and merge with this student
-        try {
-          List<Student> selectResult = db.select(Student.class, "negative", qParams);
-          assert (selectResult.size() >= 1);
-          for (Student dbStudent : selectResult) {
-            s.mergeStudentIntoThis(dbStudent);
-          }
-        } catch (AssertionError e) {
-          System.out.println("Student " + sid + " not found in negative database");
-        } catch (Exception e) {
-          ProjectErrorHandler.invalidInputError("Error selecting negative traits from database");
-        }
-
-        // select from interests table and merge with this student
-        try {
-          List<Student> selectResult = db.select(Student.class, "interests", qParams);
-          assert (selectResult.size() >= 1);
-          for (Student dbStudent : selectResult) {
-            s.mergeStudentIntoThis(dbStudent);
-          }
-        } catch (AssertionError e) {
-          System.out.println("Student " + sid + " not found in interests database");
-        } catch (Exception e) {
-          ProjectErrorHandler.invalidInputError("Error selecting interests traits from database");
-        }
       }
     }
 
