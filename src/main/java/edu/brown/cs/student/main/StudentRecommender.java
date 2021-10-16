@@ -54,6 +54,14 @@ public class StudentRecommender implements Recommender {
     }
   }
 
+  /**
+   * Function to get students array for testing purposes
+   * @return studentsArray
+   */
+  public Student[] getStudentsArray() {
+    return studentsArray;
+  }
+
   @Override
   public void recommendID(int numRecs, int id) {
     //TODO
