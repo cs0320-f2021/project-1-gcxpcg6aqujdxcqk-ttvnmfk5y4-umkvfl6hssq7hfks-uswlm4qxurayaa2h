@@ -10,10 +10,17 @@ import edu.brown.cs.student.main.jsonobjects.Users;
 import java.util.Arrays;
 import java.util.HashSet;
 
+/**
+ * This is the ApiHandler class, which gets the JSON data from each of the endpoints. It connects
+ * to each endpoint a different number of times depending on speed and reliability of data.
+ */
 public class ApiHandler implements ArgumentHandler {
-
   private HashSet<JSONObject> hashSet;
 
+  /**
+   *
+   * @param arguments
+   */
   public void handleArg(String[] arguments) {
     ApiClient client = new ApiClient();
     JsonHandler handler = new JsonHandler();
