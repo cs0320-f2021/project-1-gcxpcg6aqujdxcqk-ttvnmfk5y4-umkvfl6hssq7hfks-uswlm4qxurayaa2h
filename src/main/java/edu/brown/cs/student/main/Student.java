@@ -21,12 +21,12 @@ public class Student implements JSONObject{
 
 //  private final int skillsID;
 //  private final String skillsName;
-  private int commenting;
-  private int testing;
-  private int oop;
-  private int algorithms;
-  private int teamwork;
-  private int frontend;
+  private Integer commenting;
+  private Integer testing;
+  private Integer oop;
+  private Integer algorithms;
+  private Integer teamwork;
+  private Integer frontend;
 
   /**
    * @param id
@@ -49,8 +49,8 @@ public class Student implements JSONObject{
   public Student(int id, String name, String meeting, String grade,
                   double years_of_experience, String horoscope, String meeting_times,
                   String preferred_language, String marginalized_groups, String prefer_group,
-                 int commenting, int testing, int oop, int algorithms,
-                  int teamwork, int frontend) {
+                 Integer commenting, Integer testing, Integer oop, Integer algorithms,
+                 Integer teamwork, Integer frontend) {
     this.id = id;
     this.name = name;
     this.meeting = meeting;
