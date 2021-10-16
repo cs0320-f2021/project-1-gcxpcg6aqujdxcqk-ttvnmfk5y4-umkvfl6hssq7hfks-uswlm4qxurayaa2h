@@ -21,12 +21,12 @@ public class Student implements JSONObject{
 
 //  private final int skillsID;
 //  private final String skillsName;
-  private final int commenting;
-  private final int testing;
-  private final int oop;
-  private final int algorithms;
-  private final int teamwork;
-  private final int frontend;
+  private int commenting;
+  private int testing;
+  private int oop;
+  private int algorithms;
+  private int teamwork;
+  private int frontend;
 
   /**
    * @param id
@@ -89,41 +89,19 @@ public class Student implements JSONObject{
 
 
   /**
-   * Takes in another student that has the same
+   * Takes in a SkillsDbStudent and merges into this student.
+   * TODO create a generic interface for Db results that includes SkillsDbStudent
    */
-  public void mergeStudentIntoThis(Student otherStudent) {
-    if (otherStudent.getId() != this.id) {
+  public void mergeSkillsDbStudent(SkillsDbStudent dbStudent) {
+    if (dbStudent.getId() != this.id) {
       ProjectErrorHandler.invalidInputError("mergeStudents can only merge Students with the same id");
     } else {
-      //TODO IMPLEMENT THIS!
-//      if (this.getDataAPI().size() < 8) {
-//
-//      }
-//      otherStudent
-
-//      this.name = name;
-//      this.meeting = meeting;
-//      this.grade = grade;
-//      this.years_of_experience = years_of_experience;
-//      this.horoscope = horoscope;
-//      this.meeting_times = meeting_times;
-//      this.preferred_language = preferred_language;
-//      this.marginalized_groups = marginalized_groups;
-//      this.prefer_group = prefer_group;
-//      this.interestID = interestID;
-//      this.interest = interest;
-//      this.traitIDPositive = traitIDPositive;
-//      this.traitPositive = traitPositive;
-//      this.traitIDNegative = traitIDNegative;
-//      this.traitNegative = traitNegative;
-//      this.skillsID = skillsID;
-//      this.skillsName = skillsName;
-//      this.commenting = commenting;
-//      this.testing = testing;
-//      this.oop = oop;
-//      this.algorithms = algorithms;
-//      this.teamwork = teamwork;
-//      this.frontend = frontend;
+      this.commenting = dbStudent.getCommenting();
+      this.testing = dbStudent.getTesting();
+      this.oop = dbStudent.getOop();
+      this.algorithms = dbStudent.getAlgorithms();
+      this.teamwork = dbStudent.getTeamwork();
+      this.frontend = dbStudent.getFrontend();
     }
   }
 
@@ -134,8 +112,6 @@ public class Student implements JSONObject{
    */
   public List<Object> getDataAPI() {
     List<Object> list = new ArrayList<Object>();
-//    list.add(this.id);
-//    list.add(this.name);
     list.add(this.meeting);
     list.add(this.grade);
     list.add(this.years_of_experience);
@@ -144,7 +120,6 @@ public class Student implements JSONObject{
     list.add(this.preferred_language);
     list.add(this.marginalized_groups);
     list.add(this.prefer_group);
-
     return list;
   }
 
@@ -154,15 +129,12 @@ public class Student implements JSONObject{
    */
   public List<Object> getDataORM() {
     List<Object> list = new ArrayList<Object>();
-//    list.add(this.skillsID);
-//    list.add(this.skillsName);
     list.add(this.commenting);
     list.add(this.testing);
     list.add(this.oop);
     list.add(this.algorithms);
     list.add(this.teamwork);
     list.add(this.frontend);
-
     return list;
   }
 

@@ -1,14 +1,8 @@
 package edu.brown.cs.student.main;
 
-import edu.brown.cs.student.main.api.ApiClient;
-import edu.brown.cs.student.main.api.ClientRequestGenerator;
-import edu.brown.cs.student.main.jsonobjects.JSONObject;
-import edu.brown.cs.student.main.jsonobjects.JsonHandler;
 import edu.brown.cs.student.orm.Database;
 
-import java.lang.reflect.InvocationTargetException;
 import java.sql.SQLException;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -46,10 +40,10 @@ public class StudentRecommender implements Recommender {
         qParams.put("id", String.valueOf(sid));
         try {
           // select from skills table and merge with this student
-          List<Student> selectResult = db.select(Student.class, "skills", qParams);
+          List<SkillsDbStudent> selectResult = db.select(SkillsDbStudent.class, "skills", qParams);
           assert (selectResult.size() == 1);
-          Student dbStudent = selectResult.get(0);
-          s.mergeStudentIntoThis(dbStudent);
+          SkillsDbStudent dbStudent = selectResult.get(0);
+          s.mergeSkillsDbStudent(dbStudent);
         } catch (AssertionError e) {
           System.out.println("Student " + sid + " not found in skills database");
         } catch (Exception e) {
@@ -58,9 +52,6 @@ public class StudentRecommender implements Recommender {
         }
       }
     }
-
-
-
   }
 
   @Override
