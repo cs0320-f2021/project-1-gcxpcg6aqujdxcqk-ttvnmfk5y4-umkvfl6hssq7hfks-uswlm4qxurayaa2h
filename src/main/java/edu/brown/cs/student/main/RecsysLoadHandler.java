@@ -17,30 +17,30 @@ public class RecsysLoadHandler implements ArgumentHandler {
     JsonHandler handler = new JsonHandler();
 
     //first get the data from the API and create array of Student objects
-    HashSet<Student> studentList = new HashSet<>();
+    HashSet<Student> studentHashSet = new HashSet<>();
     for (int i = 0; i < 3; i++) {
       try {
       client.makeRequest(ClientRequestGenerator.postRequest());
       Student[] student = handler.convertStudentFromAPI(client.getData());
-      studentList.addAll(Arrays.asList(student));
+      studentHashSet.addAll(Arrays.asList(student));
       } catch (Exception ignore) {
 
       }
     }
-    System.out.println(studentList.size() + " results!");
+    System.out.println(studentHashSet.size() + " results!");
 
     //TODO make sure filename is right
-    StudentRecommender sr = new StudentRecommender(studentList, "integration.sqlite3");
+    StudentRecommender sr = new StudentRecommender(studentHashSet, "data/project-1/integration.sqlite3");
     ProjectDataContainer.setProjectRecommender(sr);
   }
 
   @Override
   public boolean checkNumArgs(String[] arguments) {
-    return arguments.length == 1;
+    return arguments.length == 2;
   }
 
   @Override
   public String getUsageString() {
-    return "usage: student";
+    return "usage: recsys_load responses";
   }
 }

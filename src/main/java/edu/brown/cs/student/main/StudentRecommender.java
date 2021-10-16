@@ -26,7 +26,7 @@ public class StudentRecommender implements Recommender {
    */
   public StudentRecommender(HashSet<Student> studentHashSet, String dbString) {
     // API was already called in RecsysLoadHandler, so now we just load that into Students[] array
-    studentHashSet.toArray(studentsArray);
+    studentsArray = studentHashSet.toArray(studentsArray);
 
     // set up Database
     try {
@@ -53,6 +53,7 @@ public class StudentRecommender implements Recommender {
         } catch (AssertionError e) {
           System.out.println("Student " + sid + " not found in skills database");
         } catch (Exception e) {
+          e.printStackTrace();
           ProjectErrorHandler.invalidInputError("Error selecting skills from database");
         }
       }

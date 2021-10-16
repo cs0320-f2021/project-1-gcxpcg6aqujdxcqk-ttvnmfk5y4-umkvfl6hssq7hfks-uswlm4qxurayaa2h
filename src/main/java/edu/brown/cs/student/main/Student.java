@@ -19,8 +19,8 @@ public class Student implements JSONObject{
   private final String prefer_group;
 
 
-  private final int skillsID;
-  private final String skillsName;
+//  private final int skillsID;
+//  private final String skillsName;
   private final int commenting;
   private final int testing;
   private final int oop;
@@ -39,14 +39,6 @@ public class Student implements JSONObject{
    * @param preferred_language
    * @param marginalized_groups
    * @param prefer_group
-   * @param interestID
-   * @param interest
-   * @param traitIDPositive
-   * @param traitPositive
-   * @param traitIDNegative
-   * @param traitNegative
-   * @param skillsID
-   * @param skillsName
    * @param commenting
    * @param testing
    * @param oop
@@ -57,9 +49,7 @@ public class Student implements JSONObject{
   public Student(int id, String name, String meeting, String grade,
                   double years_of_experience, String horoscope, String meeting_times,
                   String preferred_language, String marginalized_groups, String prefer_group,
-                  int interestID, int interest, int traitIDPositive,
-                  String traitPositive, int traitIDNegative, String traitNegative, int skillsID,
-                  String skillsName, int commenting, int testing, int oop, int algorithms,
+                 int commenting, int testing, int oop, int algorithms,
                   int teamwork, int frontend) {
     this.id = id;
     this.name = name;
@@ -71,8 +61,8 @@ public class Student implements JSONObject{
     this.preferred_language = preferred_language;
     this.marginalized_groups = marginalized_groups;
     this.prefer_group = prefer_group;
-    this.skillsID = skillsID;
-    this.skillsName = skillsName;
+//    this.skillsID = skillsID;
+//    this.skillsName = skillsName;
     this.commenting = commenting;
     this.testing = testing;
     this.oop = oop;
@@ -106,6 +96,9 @@ public class Student implements JSONObject{
       ProjectErrorHandler.invalidInputError("mergeStudents can only merge Students with the same id");
     } else {
       //TODO IMPLEMENT THIS!
+//      if (this.getDataAPI().size() < 8) {
+//
+//      }
 //      otherStudent
 
 //      this.name = name;
@@ -135,10 +128,14 @@ public class Student implements JSONObject{
   }
 
 
+  /**
+   * Returns a list of all of the fields from the API that are only in the API; does not include id or name.
+   * @return List<Object> containing data from the API
+   */
   public List<Object> getDataAPI() {
     List<Object> list = new ArrayList<Object>();
-    list.add(this.id);
-    list.add(this.name);
+//    list.add(this.id);
+//    list.add(this.name);
     list.add(this.meeting);
     list.add(this.grade);
     list.add(this.years_of_experience);
@@ -151,10 +148,14 @@ public class Student implements JSONObject{
     return list;
   }
 
+  /**
+   * Returns a list of all of the fields from the database that are only in the database; does not include id or name.
+   * @return List<Object> containing data from the API
+   */
   public List<Object> getDataORM() {
     List<Object> list = new ArrayList<Object>();
-    list.add(this.skillsID);
-    list.add(this.skillsName);
+//    list.add(this.skillsID);
+//    list.add(this.skillsName);
     list.add(this.commenting);
     list.add(this.testing);
     list.add(this.oop);
@@ -175,7 +176,8 @@ public class Student implements JSONObject{
     }
     Student student = (Student) o;
     return id == student.id && years_of_experience == student.years_of_experience &&
-        skillsID == student.skillsID && commenting == student.commenting &&
+//        skillsID == student.skillsID &&
+        commenting == student.commenting &&
         testing == student.testing && oop == student.oop && algorithms == student.algorithms &&
         teamwork == student.teamwork && frontend == student.frontend &&
         Objects.equals(name, student.name) &&
@@ -185,14 +187,14 @@ public class Student implements JSONObject{
         Objects.equals(meeting_times, student.meeting_times) &&
         Objects.equals(preferred_language, student.preferred_language) &&
         Objects.equals(marginalized_groups, student.marginalized_groups) &&
-        Objects.equals(prefer_group, student.prefer_group) &&
-        Objects.equals(skillsName, student.skillsName);
+        Objects.equals(prefer_group, student.prefer_group);
+//        && Objects.equals(skillsName, student.skillsName);
   }
 
   @Override
   public int hashCode() {
     return Objects.hash(id, name, meeting, grade, years_of_experience, horoscope, meeting_times,
-        preferred_language, marginalized_groups, prefer_group, skillsID, skillsName, commenting, testing,
+        preferred_language, marginalized_groups, prefer_group, commenting, testing,
         oop,
         algorithms, teamwork, frontend);
   }
