@@ -1,0 +1,9 @@
+INPUT
+dataGet users
+dataGet reviews
+dataGet rent
+OUTPUT
+15 results!
+30 results!
+30 results!
+END

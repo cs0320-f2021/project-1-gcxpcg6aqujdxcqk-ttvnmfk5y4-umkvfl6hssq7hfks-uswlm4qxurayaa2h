@@ -6,11 +6,17 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.time.Duration;
 
+/**
+ * This is the ApiClient class, which creates and client and sends a response using the client.
+ * Use the getData() method to get the body of the response.
+ */
 public class ApiClient {
-
   private final HttpClient client;
   private String data;
 
+  /**
+   * Constructor for ApiClient. Makes a new HttpClient builder, specifying the version and timeout.
+   */
   public ApiClient() {
     // HttpClient with version HTTP_2 and connection timeout of 15 seconds.
     // See https://docs.oracle.com/en/java/javase/11/docs/api/java.net.http/java/net/http/HttpClient.html
@@ -21,6 +27,11 @@ public class ApiClient {
         .build();
   }
 
+  /**
+   * This method makes a request and stores the body of the response.
+   *
+   * @param req to send to the client
+   */
   public void makeRequest(HttpRequest req) {
     try {
       HttpResponse<String> apiResponse = client.send(req, HttpResponse.BodyHandlers.ofString());
@@ -46,6 +57,12 @@ public class ApiClient {
     }
   }
 
+  /**
+   * This method returns the data stored in the data variable, which was given a value from
+   * the makeRequest() method.
+   *
+   * @return data found in response body
+   */
   public String getData() {
     String dataTemp = data;
     data  = null;
