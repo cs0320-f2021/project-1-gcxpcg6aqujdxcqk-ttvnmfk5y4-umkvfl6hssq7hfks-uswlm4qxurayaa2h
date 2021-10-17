@@ -4,7 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * This simple class is for reading the API Key from your secret file (THAT SHOULD NOT BE PUSHED TO GIT).
+ * This simple class is for reading the API Key from your secret file
+ * (THAT SHOULD NOT BE PUSHED TO GIT).
  */
 public class ClientAuth {
 

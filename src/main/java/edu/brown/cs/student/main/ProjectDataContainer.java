@@ -1,5 +1,9 @@
 package edu.brown.cs.student.main;
 
+/**
+ * This class is the container for our entire project, as it allows us to set the structure and
+ * use the recommender throughout the project.
+ */
 public class ProjectDataContainer {
   private static ProjectDataStructure dataStructure = null;
   private static Recommender projectRecommender = null;
@@ -19,5 +23,4 @@ public class ProjectDataContainer {
   public static Recommender getProjectRecommender() {
     return projectRecommender;
   }
-
 }

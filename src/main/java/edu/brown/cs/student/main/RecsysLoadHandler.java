@@ -2,13 +2,14 @@ package edu.brown.cs.student.main;
 
 import edu.brown.cs.student.main.api.ApiClient;
 import edu.brown.cs.student.main.api.ClientRequestGenerator;
-import edu.brown.cs.student.main.jsonobjects.JSONObject;
 import edu.brown.cs.student.main.jsonobjects.JsonHandler;
-
 import java.io.FileNotFoundException;
 import java.util.Arrays;
 import java.util.HashSet;
 
+/**
+ * The RecsysLoadHandler class loads the data from the API into a Student object.
+ */
 public class RecsysLoadHandler implements ArgumentHandler {
 
   @Override
@@ -20,9 +21,9 @@ public class RecsysLoadHandler implements ArgumentHandler {
     HashSet<Student> studentHashSet = new HashSet<>();
     for (int i = 0; i < 3; i++) {
       try {
-      client.makeRequest(ClientRequestGenerator.postRequest());
-      Student[] student = handler.convertStudentFromAPI(client.getData());
-      studentHashSet.addAll(Arrays.asList(student));
+        client.makeRequest(ClientRequestGenerator.postRequest());
+        Student[] student = handler.convertStudentFromAPI(client.getData());
+        studentHashSet.addAll(Arrays.asList(student));
       } catch (Exception ignore) {
 
       }
@@ -30,7 +31,8 @@ public class RecsysLoadHandler implements ArgumentHandler {
     System.out.println(studentHashSet.size() + " results!");
 
     //TODO make sure filename is right
-    StudentRecommender sr = new StudentRecommender(studentHashSet, "data/project-1/integration.sqlite3");
+    StudentRecommender sr = new StudentRecommender(studentHashSet,
+        "data/project-1/integration.sqlite3");
     ProjectDataContainer.setProjectRecommender(sr);
   }
 

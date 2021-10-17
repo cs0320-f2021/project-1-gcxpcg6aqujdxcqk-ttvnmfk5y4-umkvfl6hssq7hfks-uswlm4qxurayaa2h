@@ -10,7 +10,6 @@ import java.io.IOException;
  * A generic file parser.
  */
 public class FileParser {
-
   private BufferedReader bufRead = null;
 
   /**
@@ -19,7 +18,6 @@ public class FileParser {
    * @param file - a String file path
    */
   public FileParser(String file) {
-
     try {
       this.bufRead = new BufferedReader(new FileReader(file));
     } catch (FileNotFoundException f) {

@@ -1,5 +1,5 @@
 INPUT
-student
+recsys_load responses
 OUTPUT
 61 results!
 END

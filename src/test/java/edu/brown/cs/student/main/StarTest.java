@@ -8,6 +8,12 @@ import static org.junit.Assert.assertEquals;
 public class StarTest {
 
   @Test
+  public void testGetStarID() {
+    Star star = new Star(1, "Lonely Star",5,-2.24,10.04);
+    assertEquals(1, star.getStarID());
+  }
+
+  @Test
   public void testGetProperName() {
     Star star = new Star(1, "Lonely Star",5,-2.24,10.04);
     assertEquals("Lonely Star", star.getProperName());
