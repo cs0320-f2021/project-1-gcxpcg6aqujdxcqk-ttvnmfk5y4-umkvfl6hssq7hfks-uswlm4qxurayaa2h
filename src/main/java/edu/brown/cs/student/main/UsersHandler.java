@@ -5,11 +5,20 @@ import edu.brown.cs.student.main.jsonobjects.JSONObject;
 import edu.brown.cs.student.main.jsonobjects.JsonHandler;
 import edu.brown.cs.student.main.jsonobjects.Users;
 import edu.brown.cs.student.main.kdtree.KdTree;
-
 import java.io.FileNotFoundException;
 import java.util.HashSet;
 
+/**
+ * The UsersHandler class gets the data from the hashset, and loads the data into a kd tree.
+ *
+ */
 public class UsersHandler implements ArgumentHandler {
+
+  /**
+   * The handleArg method handles the arguments from the REPL.
+   *
+   * @param arguments from the REPL
+   */
   public void handleArg(String[] arguments) {
     if (arguments[1].equals("online")) {
       System.out.println("loading from api...");
@@ -52,7 +61,7 @@ public class UsersHandler implements ArgumentHandler {
 
         System.out.println("Data loaded!");
       } catch (FileNotFoundException e) {
-        ProjectErrorHandler.invalidInputError("could not read file "+jsonFileName);
+        ProjectErrorHandler.invalidInputError("could not read file " + jsonFileName);
       }
     }
   }
@@ -65,5 +74,4 @@ public class UsersHandler implements ArgumentHandler {
     return "usage: users path/to/jsonfile.json \n " +
         "       users online";
   }
-
 }

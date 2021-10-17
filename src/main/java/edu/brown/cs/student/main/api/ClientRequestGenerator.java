@@ -1,7 +1,5 @@
 package edu.brown.cs.student.main.api;
 
-import edu.brown.cs.student.main.api.ClientAuth;
-
 import java.net.URI;
 import java.net.http.HttpRequest;
 import java.util.List;
@@ -12,8 +10,10 @@ import java.util.List;
 public class ClientRequestGenerator {
 
   /**
+   * This method makes an HttpRequest and constructs the endpoint url using the data type, api key,
+   * and cs login.
    *
-   * @return an HttpRequest object for accessing and posting to the secured resource.
+   * @return an HttpRequest object for accessing the secured resource.
    */
   public static HttpRequest getRequest(String data, String endpoint) {
     List<String> arguments = ClientAuth.getApiKey();
@@ -33,6 +33,7 @@ public class ClientRequestGenerator {
   }
 
   /**
+   * This method makes a POST request and sends a JSON containing the cs login.
    *
    * @return an HttpRequest object for accessing and posting to the secured resource.
    */

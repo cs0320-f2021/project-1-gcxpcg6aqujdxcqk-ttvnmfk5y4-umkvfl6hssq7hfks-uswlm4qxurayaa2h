@@ -1,5 +1,8 @@
 package edu.brown.cs.student.main;
 
+/**
+ * The ProjectErrorHandler class contains all the errors thrown in the Main class.
+ */
 public final class ProjectErrorHandler {
   public static void noStarsError() {
     System.out.println("ERROR: no stars file has been loaded in yet");
@@ -26,7 +29,7 @@ public final class ProjectErrorHandler {
     System.out.println("ERROR: feature not yet implemented");
   }
 
-  public static void wrongDimensionError() {System.out.println("ERROR: wrong dimension");}
-
+  public static void wrongDimensionError() {
+    System.out.println("ERROR: wrong dimension");
+  }
 }
-

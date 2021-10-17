@@ -8,9 +8,7 @@ import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.HashMap;
 import java.util.Map;
-
 import com.google.common.collect.ImmutableMap;
-
 import edu.brown.cs.student.main.api.ApiHandler;
 import edu.brown.cs.student.main.kdtree.ClassifyHandler;
 import edu.brown.cs.student.main.kdtree.KdTree;
@@ -93,7 +91,8 @@ public final class Main {
 
         ArgumentHandler handler = argHashMap.get(arguments[0]);
 
-        //TODO before, Ben's code checked: `if the reader hasn't already been created and the command isn't stars, throw an error`
+        //TODO before, Ben's code checked: `if the reader hasn't already been
+        // created and the command isn't stars, throw an error`
         if (handler == null) {
           ProjectErrorHandler.wrongArgError();
           continue;

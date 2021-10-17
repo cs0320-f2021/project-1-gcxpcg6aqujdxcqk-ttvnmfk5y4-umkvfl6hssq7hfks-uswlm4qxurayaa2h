@@ -48,7 +48,8 @@ public class ApiClient {
 
     } catch (IllegalArgumentException iae) {
       System.out.println(
-          "The request argument was invalid. It must be built as specified by HttpRequest.Builder.");
+          "The request argument was invalid. "
+              + "It must be built as specified by HttpRequest.Builder.");
       System.out.println(iae.getMessage());
 
     } catch (SecurityException se) {

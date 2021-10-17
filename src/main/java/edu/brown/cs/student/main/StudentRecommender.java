@@ -1,13 +1,15 @@
 package edu.brown.cs.student.main;
 
-import edu.brown.cs.student.orm.Database;
-
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * The StudentRecommender class loads the data from the database into a Student array already
+ * populated by the API.
+ */
 public class StudentRecommender implements Recommender {
   private Student[] studentsArray = new Student[]{};
   private Database db = null;
@@ -55,7 +57,8 @@ public class StudentRecommender implements Recommender {
   }
 
   /**
-   * Function to get students array for testing purposes
+   * Function to get students array for testing purposes.
+   *
    * @return studentsArray
    */
   public Student[] getStudentsArray() {

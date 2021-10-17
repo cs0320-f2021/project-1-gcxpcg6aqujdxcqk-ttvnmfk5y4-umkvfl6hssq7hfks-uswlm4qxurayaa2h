@@ -1,4 +1,4 @@
-package edu.brown.cs.student.orm;
+package edu.brown.cs.student.main;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
@@ -196,10 +196,10 @@ public class Database {
    * @throws NoSuchMethodException
    * @throws SecurityException
    */
-  public <T> List<T> select(Class<T> c, String tableName, Map<String, String> queryParams) throws SQLException,
-      InstantiationException, IllegalAccessException, IllegalArgumentException,
+  public <T> List<T> select(Class<T> c, String tableName, Map<String, String> queryParams)
+      throws SQLException, InstantiationException, IllegalAccessException, IllegalArgumentException,
       InvocationTargetException, NoSuchMethodException, SecurityException {
-//    String tableName = c.getSimpleName().toLowerCase();
+    // String tableName = c.getSimpleName().toLowerCase();
     List<Object> params = new ArrayList<>();
     Set<String> keys = queryParams.keySet();
     String wheres = "";

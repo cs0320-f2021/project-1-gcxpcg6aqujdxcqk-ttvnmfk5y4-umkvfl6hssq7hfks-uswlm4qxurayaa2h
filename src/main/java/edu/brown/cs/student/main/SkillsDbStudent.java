@@ -1,20 +1,21 @@
 package edu.brown.cs.student.main;
 
 import edu.brown.cs.student.main.jsonobjects.JSONObject;
-
 import java.util.Map;
 
-
-public class SkillsDbStudent implements JSONObject{
+/**
+ * This is the SkillsDbStudent class, which holds the data for the object.
+ */
+public class SkillsDbStudent implements JSONObject {
   /** Fields corresponding to skills table in integration.sqlite3
-  	"id"	INTEGER,
-	"name"	TEXT,
-	"commenting"	INTEGER,
-	"testing"	INTEGER,
-	"OOP"	INTEGER,
-	"algorithms"	INTEGER,
-	"teamwork"	INTEGER,
-	"frontend"	INTEGER
+   * "id"          INTEGER,
+   * "name"        TEXT,
+   * "commenting"  INTEGER,
+   * "testing"     INTEGER,
+   * "OOP"         INTEGER,
+   * "algorithms"  INTEGER,
+   * "teamwork"    INTEGER,
+   * "frontend"    INTEGER
    */
   private final int id;
   private final String name;
@@ -26,6 +27,8 @@ public class SkillsDbStudent implements JSONObject{
   private final int frontend;
 
   /**
+   * Constructor for the SkillsDbStudent class.
+   *
    * @param inputMap map of argument fields and string values
    */
   public SkillsDbStudent(Map<String, String> inputMap) {
@@ -40,7 +43,8 @@ public class SkillsDbStudent implements JSONObject{
   }
 
   /**
-   * Get ID of jsonObject
+   * Get ID of jsonObject.
+   *
    * @return id of review
    */
   public int getId() {
@@ -48,7 +52,8 @@ public class SkillsDbStudent implements JSONObject{
   }
 
   /**
-   * Gets the three coordinates we're interested in in an array
+   * Gets the three coordinates we're interested in in an array.
+   *
    * @return null because this is not used for kdtrees
    */
   public int[] getUserCoordinates() {
@@ -56,42 +61,42 @@ public class SkillsDbStudent implements JSONObject{
   }
 
   /**
-   * Returns commenting score
+   * Returns commenting score.
    */
   public int getCommenting() {
     return commenting;
   }
 
   /**
-   * Returns testing score
+   * Returns testing score.
    */
   public int getTesting() {
     return testing;
   }
 
   /**
-   * Returns oop score
+   * Returns oop score.
    */
   public int getOop() {
     return oop;
   }
 
   /**
-   * Returns commenting score
+   * Returns commenting score.
    */
   public int getAlgorithms() {
     return algorithms;
   }
 
   /**
-   * Returns teamwork score
+   * Returns teamwork score.
    */
   public int getTeamwork() {
     return teamwork;
   }
 
   /**
-   * Returns frontend score
+   * Returns frontend score.
    */
   public int getFrontend() {
     return frontend;

@@ -125,8 +125,8 @@ public class ApiHandler implements ArgumentHandler {
   }
 
   /**
-   * This method returns the usage string providing the user more information on how to properly
-   * use the command.
+   * The getUsageString() method returns the usage string providing
+   * the user more information on how to properly use the command.
    *
    * @return usage string
    */
@@ -135,7 +135,7 @@ public class ApiHandler implements ArgumentHandler {
   }
 
   /**
-   * This method returns the hashset with the collected data.
+   * The getHashSet() method returns the hashset with the collected data.
    *
    * @return hashset
    */
