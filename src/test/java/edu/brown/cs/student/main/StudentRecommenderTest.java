@@ -4,6 +4,7 @@ import org.junit.Test;
 
 import java.io.FileNotFoundException;
 import java.util.HashSet;
+import java.util.List;
 
 import static org.junit.Assert.*;
 
@@ -70,7 +71,7 @@ public class StudentRecommenderTest {
     Student s2Fake = new Student(2, "Panda", "Zoom",
             "Freshman", 25, "Taurus",
             "Evening (6:00PM - 9:00PM); Late Night (12:00AM - 3:00AM)",
-            "C", "", "Yes", null,
+            "C", "","Yes", null,
             10,	10,10,10,10);
     Student s2API = new Student(2, "Panda", "Zoom",
             "Freshman", 25, "Taurus",
@@ -95,9 +96,13 @@ public class StudentRecommenderTest {
 
     StudentRecommender sr1Fake = new StudentRecommender(realstudentHashSet1, "data/project-1/emptyEditable.sqlite3");
 
-    assertEquals(s1Fake, sr1Fake.getStudentsArray()[0]);
-    assertNotEquals(s2Fake, sr1Fake.getStudentsArray()[1]);
-    assertEquals(s3Fake, sr1Fake.getStudentsArray()[2]);
+    HashSet<Student> sr1Set = new HashSet<Student>(List.of(sr1Fake.getStudentsArray()));
+    HashSet<Student> compSet = new HashSet<>(List.of(s1Fake, s2Fake, s3Fake));
+    assertEquals(sr1Set, compSet);
+
+//    assertEquals(s1Fake, sr1Fake.getStudentsArray()[0]);
+//    assertNotEquals(s2Fake, sr1Fake.getStudentsArray()[1]);
+//    assertEquals(s3Fake, sr1Fake.getStudentsArray()[2]);
 
 
 

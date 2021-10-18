@@ -19,12 +19,12 @@ public class SkillsDbStudent implements JSONObject {
    */
   private final int id;
   private final String name;
-  private final int commenting;
-  private final int testing;
-  private final int oop;
-  private final int algorithms;
-  private final int teamwork;
-  private final int frontend;
+  private final Integer commenting;
+  private final Integer testing;
+  private final Integer oop;
+  private final Integer algorithms;
+  private final Integer teamwork;
+  private final Integer frontend;
 
   /**
    * Constructor for the SkillsDbStudent class.
@@ -34,12 +34,42 @@ public class SkillsDbStudent implements JSONObject {
   public SkillsDbStudent(Map<String, String> inputMap) {
     this.id = Integer.parseInt(inputMap.get("id"));
     this.name = inputMap.get("name");
-    this.commenting = Integer.parseInt(inputMap.get("commenting"));
-    this.testing = Integer.parseInt(inputMap.get("testing"));
-    this.oop = Integer.parseInt(inputMap.get("oop"));
-    this.algorithms = Integer.parseInt(inputMap.get("algorithms"));
-    this.teamwork = Integer.parseInt(inputMap.get("teamwork"));
-    this.frontend = Integer.parseInt(inputMap.get("frontend"));
+
+    if (inputMap.get("commenting") != null) {
+      this.commenting = Integer.parseInt(inputMap.get("commenting"));
+    } else {
+      this.commenting = null;
+    }
+
+    if (inputMap.get("testing") != null) {
+      this.testing = Integer.parseInt(inputMap.get("testing"));
+    } else {
+      this.testing = null;
+    }
+
+    if (inputMap.get("oop") != null) {
+      this.oop = Integer.parseInt(inputMap.get("oop"));
+    } else {
+      this.oop = null;
+    }
+
+    if (inputMap.get("algorithms") != null) {
+      this.algorithms = Integer.parseInt(inputMap.get("algorithms"));
+    } else {
+      this.algorithms = null;
+    }
+
+    if (inputMap.get("teamwork") != null) {
+      this.teamwork = Integer.parseInt(inputMap.get("teamwork"));
+    } else {
+      this.teamwork = null;
+    }
+
+    if (inputMap.get("frontend") != null) {
+      this.frontend = Integer.parseInt(inputMap.get("frontend"));
+    } else {
+      this.frontend = null;
+    }
   }
 
   /**
@@ -63,42 +93,42 @@ public class SkillsDbStudent implements JSONObject {
   /**
    * Returns commenting score.
    */
-  public int getCommenting() {
+  public Integer getCommenting() {
     return commenting;
   }
 
   /**
    * Returns testing score.
    */
-  public int getTesting() {
+  public Integer getTesting() {
     return testing;
   }
 
   /**
    * Returns oop score.
    */
-  public int getOop() {
+  public Integer getOop() {
     return oop;
   }
 
   /**
    * Returns commenting score.
    */
-  public int getAlgorithms() {
+  public Integer getAlgorithms() {
     return algorithms;
   }
 
   /**
    * Returns teamwork score.
    */
-  public int getTeamwork() {
+  public Integer getTeamwork() {
     return teamwork;
   }
 
   /**
    * Returns frontend score.
    */
-  public int getFrontend() {
+  public Integer getFrontend() {
     return frontend;
   }
 }

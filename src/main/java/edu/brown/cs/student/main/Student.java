@@ -162,9 +162,10 @@ public class Student implements JSONObject {
     Student student = (Student) o;
     return id == student.id && years_of_experience == student.years_of_experience
         // && skillsID == student.skillsID
-        && commenting == student.commenting
-        && testing == student.testing && oop == student.oop && algorithms == student.algorithms
-        && teamwork == student.teamwork && frontend == student.frontend
+        && Objects.equals(commenting, student.commenting)
+        && Objects.equals(testing, student.testing) && Objects.equals(oop, student.oop) &&
+        Objects.equals(algorithms, student.algorithms)
+        && Objects.equals(teamwork, student.teamwork) && Objects.equals(frontend, student.frontend)
         && Objects.equals(name, student.name)
         && Objects.equals(meeting, student.meeting)
         && Objects.equals(grade, student.grade)
