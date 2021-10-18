@@ -42,5 +42,23 @@ perception or fear that they aren't as good at coding as their counterpart.
 
 
 
+What did we not implement?
+We decided to prioritize our functionality and ultimately ended up not implementing 
+user stories 3 and 4. In the comments of our StudentRecommender class, we have an outline
+for the recommender methods that would be used in user stories 3 and 4. 
 
-//talk about why we didn’t implement classify, what we could do for that
+Here is the outline for how we would have approached user story 3:
+
+Here is the outline for how we would have approached user story 4:
+number of groups = (total number of people)/ (group size)
+the remaineder (extra people) = total people mod group size (between 1 and 1-n)
+   - randomly pick 1 grouop center and their their nn (if empty, use all people instead)
+   - randomly choose x from center's nn and remove from global list
+   - add x to thihs group and generate its nn
+   - randomly choose... repeat until this group = group size
+ Repeat this procedure for all of the number of groups; then, 
+   (if extra people 0){
+    for each extra-person, randomly choose a group
+    } else {
+    add extra person}
+   
